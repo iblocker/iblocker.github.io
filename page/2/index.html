@@ -58,48 +58,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-gradientWaveView" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/08/22/gradientWaveView/" class="article-date">
-  <time datetime="2017-08-22T13:56:28.000Z" itemprop="datePublished">2017-08-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/22/gradientWaveView/">iOS 带有渐变色波纹动画</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>&emsp;&emsp;最近有个朋友的项目里面做了波浪动画效果，刚好我的项目里也有这个需求，就把他的代码拿来改了，主要是实现了颜色渐变的效果。<br>&emsp;&emsp;<a href="https://github.com/iblocker/IBWaterWaveView" target="_blank" rel="noopener">Github</a><br>&emsp;&emsp;<a href="http://code.cocoachina.com/view/135932" target="_blank" rel="noopener">CocoaChina</a></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2377435-82089002e4ac6371.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/200" alt=""><br>&emsp;&emsp;废话不多话，说一下实现过程：<br>&emsp;&emsp;<strong>1、波纹动画主要依赖于CAShapeLayer的绘制，使用帧动画实现；需要使用多个CAShapeLayer通过y值变换组成（这里我只是用了2个CAShapeLayer）。</strong><br>&emsp;&emsp;<strong>2、渐变色由CAGradientLayer完成。</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">- (void)changeFirstWaveLayerPath &#123;</span><br><span class="line">    CGMutablePathRef path = CGPathCreateMutable();</span><br><span class="line">    CGFloat y = _wavePointY;</span><br><span class="line">    </span><br><span class="line">    CGPathMoveToPoint(path, nil, 0, y);</span><br><span class="line">    for (float x = 0.0f; x &lt;= _waveWidth; x ++) &#123;</span><br><span class="line">        y = _waveAmplitude * 1.6 * sin((250 / _waveWidth) * (x * M_PI / 180) - _waveOffsetX * M_PI / 270) + _wavePointY;</span><br><span class="line">        CGPathAddLineToPoint(path, nil, x, y);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    CGPathAddLineToPoint(path, nil, _waveWidth, 0);</span><br><span class="line">    CGPathAddLineToPoint(path, nil, 0, 0);</span><br><span class="line">    CGPathCloseSubpath(path);</span><br><span class="line">    </span><br><span class="line">    _shapeLayer1.path = path;</span><br><span class="line">    CGPathRelease(path);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)changeSecondWaveLayerPath &#123;</span><br><span class="line">    CGMutablePathRef path = CGPathCreateMutable();</span><br><span class="line">    CGFloat y = _wavePointY;</span><br><span class="line">    CGPathMoveToPoint(path, nil, 0, y);</span><br><span class="line">    for (float x = 0.0f; x &lt;= _waveWidth; x ++) &#123;</span><br><span class="line">        </span><br><span class="line">        y = _waveAmplitude * 1.6 * sin((250 / _waveWidth) * (x * M_PI / 180) - _waveOffsetX * M_PI / 180) + _wavePointY;</span><br><span class="line">        CGPathAddLineToPoint(path, nil, x, y);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    CGPathAddLineToPoint(path, nil, _waveWidth, 0);</span><br><span class="line">    CGPathAddLineToPoint(path, nil, 0, 0);</span><br><span class="line">    CGPathCloseSubpath(path);</span><br><span class="line">    </span><br><span class="line">    _shapeLayer2.path = path;</span><br><span class="line">    </span><br><span class="line">    CGPathRelease(path);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;调用：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">_waveOffsetX += _waveSpeed;</span><br><span class="line">[self changeFirstWaveLayerPath];</span><br><span class="line">[self changeSecondWaveLayerPath];</span><br><span class="line">   </span><br><span class="line">[self.layer addSublayer:self.gradientLayer1];</span><br><span class="line">self.gradientLayer1.mask = _shapeLayer1;</span><br><span class="line">   </span><br><span class="line">[self.layer addSublayer:self.gradientLayer2];</span><br><span class="line">self.gradientLayer2.mask = _shapeLayer2;</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;如果需要纯色背景的话 可以删除CAGradientLayer，给View和CAShapeLayer设置背景色；或者2个Color颜色值给相同的。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.jianshu.com/u/2740921af9d5/2017/08/22/gradientWaveView/" data-id="ck38s6xnd00066x0t1111df4d" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-remoteNotifications" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/07/27/remoteNotifications/" class="article-date">
@@ -181,10 +139,6 @@
       <ul>
         
           <li>
-            <a href="/2019/11/21/alertView/">CCWebView</a>
-          </li>
-        
-          <li>
             <a href="/2019/11/07/command/">iOS 常用Mac终端命令</a>
           </li>
         
@@ -198,6 +152,10 @@
         
           <li>
             <a href="/2019/04/12/comments/">iOS 评价控件</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/10/passStrength/">iOS 检测密码强度</a>
           </li>
         
       </ul>
