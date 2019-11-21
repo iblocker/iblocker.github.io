@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>iOS 带有渐变色波纹动画 | iBlocker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="&amp;emsp;&amp;emsp;最近有个朋友的项目里面做了波浪动画效果，刚好我的项目里也有这个需求，就把他的代码拿来改了，主要是实现了颜色渐变的效果。&amp;emsp;&amp;emsp;Github&amp;emsp;&amp;emsp;CocoaChina &amp;emsp;&amp;emsp;废话不多话，说一下实现过程：&amp;emsp;&amp;emsp;1、波纹动画主要依赖于CAShapeLayer的绘制，使用帧动画实现；需要使用多个CAShapeLa">
+<meta name="keywords" content="iOS开发者">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS 带有渐变色波纹动画">
+<meta property="og:url" content="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;2740921af9d5&#x2F;2017&#x2F;08&#x2F;22&#x2F;gradientWaveView&#x2F;index.html">
+<meta property="og:site_name" content="iBlocker">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;最近有个朋友的项目里面做了波浪动画效果，刚好我的项目里也有这个需求，就把他的代码拿来改了，主要是实现了颜色渐变的效果。&amp;emsp;&amp;emsp;Github&amp;emsp;&amp;emsp;CocoaChina &amp;emsp;&amp;emsp;废话不多话，说一下实现过程：&amp;emsp;&amp;emsp;1、波纹动画主要依赖于CAShapeLayer的绘制，使用帧动画实现；需要使用多个CAShapeLa">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;2377435-82089002e4ac6371.gif?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;200">
+<meta property="og:updated_time" content="2019-11-21T13:57:01.759Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;2377435-82089002e4ac6371.gif?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;200">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">iBlocker</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://www.jianshu.com/u/2740921af9d5"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-gradientWaveView" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/22/gradientWaveView/" class="article-date">
+  <time datetime="2017-08-22T13:56:28.000Z" itemprop="datePublished">2017-08-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      iOS 带有渐变色波纹动画
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&emsp;&emsp;最近有个朋友的项目里面做了波浪动画效果，刚好我的项目里也有这个需求，就把他的代码拿来改了，主要是实现了颜色渐变的效果。<br>&emsp;&emsp;<a href="https://github.com/iblocker/IBWaterWaveView" target="_blank" rel="noopener">Github</a><br>&emsp;&emsp;<a href="http://code.cocoachina.com/view/135932" target="_blank" rel="noopener">CocoaChina</a></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2377435-82089002e4ac6371.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/200" alt=""><br>&emsp;&emsp;废话不多话，说一下实现过程：<br>&emsp;&emsp;<strong>1、波纹动画主要依赖于CAShapeLayer的绘制，使用帧动画实现；需要使用多个CAShapeLayer通过y值变换组成（这里我只是用了2个CAShapeLayer）。</strong><br>&emsp;&emsp;<strong>2、渐变色由CAGradientLayer完成。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">- (void)changeFirstWaveLayerPath &#123;</span><br><span class="line">    CGMutablePathRef path = CGPathCreateMutable();</span><br><span class="line">    CGFloat y = _wavePointY;</span><br><span class="line">    </span><br><span class="line">    CGPathMoveToPoint(path, nil, 0, y);</span><br><span class="line">    for (float x = 0.0f; x &lt;= _waveWidth; x ++) &#123;</span><br><span class="line">        y = _waveAmplitude * 1.6 * sin((250 / _waveWidth) * (x * M_PI / 180) - _waveOffsetX * M_PI / 270) + _wavePointY;</span><br><span class="line">        CGPathAddLineToPoint(path, nil, x, y);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    CGPathAddLineToPoint(path, nil, _waveWidth, 0);</span><br><span class="line">    CGPathAddLineToPoint(path, nil, 0, 0);</span><br><span class="line">    CGPathCloseSubpath(path);</span><br><span class="line">    </span><br><span class="line">    _shapeLayer1.path = path;</span><br><span class="line">    CGPathRelease(path);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)changeSecondWaveLayerPath &#123;</span><br><span class="line">    CGMutablePathRef path = CGPathCreateMutable();</span><br><span class="line">    CGFloat y = _wavePointY;</span><br><span class="line">    CGPathMoveToPoint(path, nil, 0, y);</span><br><span class="line">    for (float x = 0.0f; x &lt;= _waveWidth; x ++) &#123;</span><br><span class="line">        </span><br><span class="line">        y = _waveAmplitude * 1.6 * sin((250 / _waveWidth) * (x * M_PI / 180) - _waveOffsetX * M_PI / 180) + _wavePointY;</span><br><span class="line">        CGPathAddLineToPoint(path, nil, x, y);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    CGPathAddLineToPoint(path, nil, _waveWidth, 0);</span><br><span class="line">    CGPathAddLineToPoint(path, nil, 0, 0);</span><br><span class="line">    CGPathCloseSubpath(path);</span><br><span class="line">    </span><br><span class="line">    _shapeLayer2.path = path;</span><br><span class="line">    </span><br><span class="line">    CGPathRelease(path);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;调用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">_waveOffsetX += _waveSpeed;</span><br><span class="line">[self changeFirstWaveLayerPath];</span><br><span class="line">[self changeSecondWaveLayerPath];</span><br><span class="line">   </span><br><span class="line">[self.layer addSublayer:self.gradientLayer1];</span><br><span class="line">self.gradientLayer1.mask = _shapeLayer1;</span><br><span class="line">   </span><br><span class="line">[self.layer addSublayer:self.gradientLayer2];</span><br><span class="line">self.gradientLayer2.mask = _shapeLayer2;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;如果需要纯色背景的话 可以删除CAGradientLayer，给View和CAShapeLayer设置背景色；或者2个Color颜色值给相同的。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.jianshu.com/u/2740921af9d5/2017/08/22/gradientWaveView/" data-id="ck38s6xnd00066x0t1111df4d" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/12/04/remoteSpeech/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          iOS 收款推送消息语音播报
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/07/27/remoteNotifications/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">iOS 使用友盟推送集成静默推送（双推送策略）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/11/21/alertView/">CCWebView</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/07/command/">iOS 常用Mac终端命令</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/08/privateRepo/">基于GitLab创建CocoaPods私有库</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/20/payment/">iOS 集成支付宝、微信、银联的App聚合支付</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/12/comments/">iOS 评价控件</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 iBlocker<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

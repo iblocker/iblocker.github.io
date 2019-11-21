@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>iOS 收款推送消息语音播报 | iBlocker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="&amp;emsp;&amp;emsp;近期产品大大突然提出一个蛋疼的需求，并表示这是“客户和市场强制要求”做的。。。没办法，只能硬着头皮上了。&amp;emsp;&amp;emsp;之前采用的是静默推送+普通推送，而且网上大部分资料也默认使用的是静默推送方式。据我所知，该方案有一定的缺陷：1、部分机器收不到语音播报；2、若需要在后台或锁屏状态下播报语音时，上架会遇到”Audio,AirPlay,and Picture in P">
+<meta name="keywords" content="iOS开发者">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS 收款推送消息语音播报">
+<meta property="og:url" content="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;2740921af9d5&#x2F;2017&#x2F;12&#x2F;04&#x2F;remoteSpeech&#x2F;index.html">
+<meta property="og:site_name" content="iBlocker">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;近期产品大大突然提出一个蛋疼的需求，并表示这是“客户和市场强制要求”做的。。。没办法，只能硬着头皮上了。&amp;emsp;&amp;emsp;之前采用的是静默推送+普通推送，而且网上大部分资料也默认使用的是静默推送方式。据我所知，该方案有一定的缺陷：1、部分机器收不到语音播报；2、若需要在后台或锁屏状态下播报语音时，上架会遇到”Audio,AirPlay,and Picture in P">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;2377435-cb8213f67dc44847.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;500">
+<meta property="og:image" content="http:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;2377435-bee8977f80332165.jpg?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;500">
+<meta property="og:updated_time" content="2019-11-21T13:55:41.046Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;2377435-cb8213f67dc44847.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;500">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">iBlocker</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://www.jianshu.com/u/2740921af9d5"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-remoteSpeech" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/04/remoteSpeech/" class="article-date">
+  <time datetime="2017-12-04T13:55:05.000Z" itemprop="datePublished">2017-12-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      iOS 收款推送消息语音播报
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&emsp;&emsp;近期产品大大突然提出一个蛋疼的需求，并表示这是<strong>“客户和市场强制要求”</strong>做的。。。没办法，只能硬着头皮上了。<br>&emsp;&emsp;之前采用的是静默推送+普通推送，而且网上大部分资料也默认使用的是静默推送方式。据我所知，该方案有一定的缺陷：<strong>1、部分机器收不到语音播报；2、若需要在后台或锁屏状态下播报语音时，上架会遇到”Audio,AirPlay,and Picture in Picture”和”Background fetch”等问题审核被拒。</strong>通过查阅网上的资料，我改用iOS 10新的API推送扩展（UNNotificationServiceExtension），三方SDK使用极光，关于集成方式就不多说了，详见<a href="https://docs.jiguang.cn/jpush/client/iOS/ios_guide_new/" target="_blank" rel="noopener">极光官方文档</a>。<br>&emsp;&emsp;这种方案的特点是：节省大量代码，上架简单，服务器只需要推一条消息，但iOS 10以上”mutable-content = 1”必传，否则程序不走这个扩展的Target。</p>
+<h4 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h4><ul>
+<li><p><strong>iOS 10以上采用<a href="http://www.jianshu.com/p/78ef7bc04655#UNNotificationServiceExtension-%E9%80%9A%E7%9F%A5%E6%9C%8D%E5%8A%A1%E6%89%A9%E5%B1%95">推送扩展</a>（极光必传mutable-content，iOS 10以下不需要）处理，使用iOS原生API AVSpeechSynthesizer实现文字合成语音。</strong><br><img src="http://upload-images.jianshu.io/upload_images/2377435-cb8213f67dc44847.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/500" alt="WX20171205-105718@2x.png"><br><img src="http://upload-images.jianshu.io/upload_images/2377435-bee8977f80332165.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/500" alt="屏幕快照 2017-12-04 09.53.17.jpg"></p>
+</li>
+<li><p><strong>iOS10以下采用固定音频文件播放，比如“你有一笔收款”。</strong></p>
+<h4 id="相关代码"><a href="#相关代码" class="headerlink" title="相关代码"></a>相关代码</h4></li>
+<li><p><strong>iOS 10以下：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler &#123;</span><br><span class="line">    </span><br><span class="line">    [JPUSHService handleRemoteNotification:userInfo];</span><br><span class="line">    completionHandler(UIBackgroundFetchResultNewData);</span><br><span class="line">    </span><br><span class="line">    //  iOS 10之前前台没有通知栏</span><br><span class="line">    if ([UIDevice currentDevice].systemVersion.floatValue &lt; 10.0 &amp;&amp; [UIApplication sharedApplication].applicationState == UIApplicationStateActive) &#123;</span><br><span class="line">       //  iOS 10以下 极光前台不展示消息栏，此处为自定义内容</span><br><span class="line">       [EBBannerView showWithContent:@&quot;交易结果通知&quot;];</span><br><span class="line">            </span><br><span class="line">       //  获取共享域的偏好设置（可百度“多target数据共享”）</span><br><span class="line">       NSUserDefaults *userDefault = [[NSUserDefaults alloc] initWithSuiteName:@&quot;group.xxx&quot;];</span><br><span class="line">       BOOL canSound = [userDefault boolForKey:@&quot;voice&quot;];</span><br><span class="line">       if (canSound) &#123;</span><br><span class="line">           //  播放refund.wav或collection.wav固定音频文件</span><br><span class="line">           if ([refund condition]) &#123;</span><br><span class="line">               [self playMusic:@&quot;refund&quot; type:@&quot;wav&quot;];</span><br><span class="line">           &#125; else &#123;</span><br><span class="line">               [self playMusic:@&quot;collection&quot; type:@&quot;wav&quot;];</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//  播放音频文件</span><br><span class="line">- (void)playMusic:(NSString *)name type:(NSString *)type &#123;</span><br><span class="line">    //得到音效文件的地址</span><br><span class="line">    NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:name ofType:type];</span><br><span class="line">    //将地址字符串转换成url</span><br><span class="line">    NSURL *soundURL = [NSURL fileURLWithPath:soundFilePath];</span><br><span class="line">    //生成系统音效id</span><br><span class="line">    AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundURL, &amp;_soundFileObject);</span><br><span class="line">    //播放系统音效</span><br><span class="line">    AudioServicesPlaySystemSound(_soundFileObject);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>iOS 10及以上：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">- (void)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler &#123;</span><br><span class="line">    self.contentHandler = contentHandler;</span><br><span class="line">    self.bestAttemptContent = [request.content mutableCopy];</span><br><span class="line">    //  iOS 10在有语音播报的情况下 可屏蔽系统提示音，也可根据需求来</span><br><span class="line">    self.bestAttemptContent.sound = nil;</span><br><span class="line">    </span><br><span class="line">    // Modify the notification content here...    </span><br><span class="line">    //  获取共享域的偏好设置</span><br><span class="line">    NSUserDefaults *userDefault = [[NSUserDefaults alloc] initWithSuiteName:@&quot;group. xxx&quot;];</span><br><span class="line">    </span><br><span class="line">    //  解析推送自定义参数userInfo</span><br><span class="line">    NSDictionary *userInfo = [self dictionaryWithUserInfo:self.bestAttemptContent.userInfo];</span><br><span class="line">    </span><br><span class="line">    BOOL canSound = [userDefault boolForKey:@&quot;voice&quot;];</span><br><span class="line">    NSString *voiceString = nil;</span><br><span class="line">    if (canSound) &#123;</span><br><span class="line">        if ([refund condition]) &#123;</span><br><span class="line">            voiceString = [NSString stringWithFormat:@&quot;退款%@元！&quot;, userInfo[@&quot;money&quot;]];</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            voiceString = [NSString stringWithFormat:@&quot;收款%@元！&quot;, userInfo[@&quot;money&quot;]];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    //  语音合成</span><br><span class="line">    [self syntheticVoice:voiceString];    </span><br><span class="line">    self.contentHandler(self.bestAttemptContent);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">- (void)syntheticVoice:(NSString *)string &#123;</span><br><span class="line">    </span><br><span class="line">    //  语音合成</span><br><span class="line">    self.synthesizer = [[AVSpeechSynthesizer alloc] init];</span><br><span class="line">    AVSpeechUtterance *speechUtterance = [AVSpeechUtterance speechUtteranceWithString:string];</span><br><span class="line">    //设置语言类别（不能被识别，返回值为nil）</span><br><span class="line">    speechUtterance.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@&quot;zh-CN&quot;];</span><br><span class="line">    //设置语速快慢</span><br><span class="line">    speechUtterance.rate = 0.55;</span><br><span class="line">    //语音合成器会生成音频 </span><br><span class="line">    [self.synthesizer speakUtterance:speechUtterance];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.jianshu.com/u/2740921af9d5/2017/12/04/remoteSpeech/" data-id="ck38s6xnm000a6x0t1rxxdz00" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/04/27/encryptedRongCloudMessage/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          iOS 关于融云及时聊天的消息加解密
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/22/gradientWaveView/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">iOS 带有渐变色波纹动画</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/11/21/alertView/">CCWebView</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/07/command/">iOS 常用Mac终端命令</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/08/privateRepo/">基于GitLab创建CocoaPods私有库</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/20/payment/">iOS 集成支付宝、微信、银联的App聚合支付</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/12/comments/">iOS 评价控件</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 iBlocker<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
