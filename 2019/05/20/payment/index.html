@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>iOS 集成支付宝、微信、银联的App聚合支付 | iBlocker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="CCPaySDK 1.三方库依赖 1.1 CocoaPods导入三方依赖库 123pod &amp;apos;AlipaySDK-iOS&amp;apos;pod &amp;apos;WechatOpenSDK&amp;apos;pod &amp;apos;MJExtension&amp;apos; 1.2 手动引入银联依赖库 12UPPaymentControl.hlibPaymentControl.a 1.3 Library Binary">
+<meta name="keywords" content="iOS开发者">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS 集成支付宝、微信、银联的App聚合支付">
+<meta property="og:url" content="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;2740921af9d5&#x2F;2019&#x2F;05&#x2F;20&#x2F;payment&#x2F;index.html">
+<meta property="og:site_name" content="iBlocker">
+<meta property="og:description" content="CCPaySDK 1.三方库依赖 1.1 CocoaPods导入三方依赖库 123pod &amp;apos;AlipaySDK-iOS&amp;apos;pod &amp;apos;WechatOpenSDK&amp;apos;pod &amp;apos;MJExtension&amp;apos; 1.2 手动引入银联依赖库 12UPPaymentControl.hlibPaymentControl.a 1.3 Library Binary">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-11-21T13:15:12.430Z">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">iBlocker</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://www.jianshu.com/u/2740921af9d5"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-payment" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/20/payment/" class="article-date">
+  <time datetime="2019-05-20T13:14:13.000Z" itemprop="datePublished">2019-05-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      iOS 集成支付宝、微信、银联的App聚合支付
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="CCPaySDK"><a href="#CCPaySDK" class="headerlink" title="CCPaySDK"></a><a href="https://github.com/iblocker/CCPaySDKDemo" target="_blank" rel="noopener">CCPaySDK</a></h4><hr>
+<p><strong>1.三方库依赖</strong></p>
+<p>1.1 CocoaPods导入三方依赖库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pod &apos;AlipaySDK-iOS&apos;</span><br><span class="line">pod &apos;WechatOpenSDK&apos;</span><br><span class="line">pod &apos;MJExtension&apos;</span><br></pre></td></tr></table></figure>
+<p>1.2 手动引入银联依赖库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">UPPaymentControl.h</span><br><span class="line">libPaymentControl.a</span><br></pre></td></tr></table></figure>
+<p>1.3 Library Binary With Libraries引入依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CFNetwork.framework</span><br><span class="line">SystemConfiguration.framework</span><br><span class="line">libz.tdb</span><br></pre></td></tr></table></figure>
+
+<p><strong>2.代码示例</strong></p>
+<p>2.1 SDK回调Code类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">typedef NS_ENUM(NSUInteger, CCPayErrorCode) &#123;</span><br><span class="line">    CCPayErrorCodeSuccess                 = 0,        //  支付成功</span><br><span class="line">    CCPayErrorCodeUnknown                 = 100000,   //  未知错误</span><br><span class="line">    CCPayErrorCodeNotInstalled            = 100001,   //  程序未安装</span><br><span class="line">    CCPayErrorCodeFailed                  = 100002,   //  支付失败</span><br><span class="line">    CCPayErrorCodeCancel                  = 100003,   //  支付取消</span><br><span class="line">    CCPayErrorCodeDealing                 = 100004,   //  交易处理中</span><br><span class="line">    CCPayErrorCodeTemporarilyNotOpened    = 100099    //  功能暂未开放</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>2.2 方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">/** SDK版本号*/</span><br><span class="line">@property (nonatomic, readonly, copy) NSString *version;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> 单例方法</span><br><span class="line"> </span><br><span class="line"> @return 单例对象</span><br><span class="line"> */</span><br><span class="line">+ (instancetype)sharedSDK;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> 注册微信支付 若要支持微信支付，则必须注册</span><br><span class="line"> </span><br><span class="line"> @param appId 微信AppId</span><br><span class="line"> @return 注册结果</span><br><span class="line"> */</span><br><span class="line">- (BOOL)registerWXAppId:(NSString *)appId;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> 打开支付Url</span><br><span class="line"> </span><br><span class="line"> @param url Url</span><br><span class="line"> @return 是否打开</span><br><span class="line"> */</span><br><span class="line">- (BOOL)openPayURL:(NSURL *)url;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> 支付</span><br><span class="line"> </span><br><span class="line"> @param payChannel      支付方式</span><br><span class="line"> @param pay_params      支付参数</span><br><span class="line"> @param viewController  调起支付的视图控制器</span><br><span class="line"> @param completion      完成回调</span><br><span class="line"> */</span><br><span class="line">- (void)payWithPayChannel:(CCPayChannel)payChannel</span><br><span class="line">               pay_params:(NSString *)pay_params</span><br><span class="line">           viewController:(UIViewController *)viewController</span><br><span class="line">               completion:(void (^)(BOOL success, NSError *error))completion;</span><br></pre></td></tr></table></figure>
+
+<p>2.3.1 注册微信AppId</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//  若要支持微信支付，则必须注册微信支付</span><br><span class="line">[[CCPayManager sharedManager] registerWXAppId:@&quot;wx0000000000000000&quot;];</span><br></pre></td></tr></table></figure>
+
+<p>2.3.2 获取SDK版本号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSString *version = [CCPayManager sharedManager].version;</span><br></pre></td></tr></table></figure>
+
+<p>2.3.3 处理OpenUrl</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url &#123;</span><br><span class="line">    return [[CCPaySDK sharedSDK] openPayURL:url];</span><br><span class="line">&#125;</span><br><span class="line">- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(nullable NSString *)sourceApplication annotation:(id)annotation &#123;</span><br><span class="line">    return [[CCPaySDK sharedSDK] openPayURL:url];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary&lt;UIApplicationOpenURLOptionsKey,id&gt; *)options NS_AVAILABLE_IOS(9_0) &#123;</span><br><span class="line">    return [[CCPaySDK sharedSDK] openPayURL:url];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.3.4 支付示例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">- (IBAction)aliPayTouchUpInside:(id)sender &#123;</span><br><span class="line">    //  支付宝支付</span><br><span class="line">   [[CCPaySDK sharedSDK] payWithPayChannel:CCPayChannelALIPAY_MOBILE</span><br><span class="line">                                         pay_params:@&quot;alipay_params&quot;</span><br><span class="line">                                     viewController:self</span><br><span class="line">                                         completion:^(BOOL success, NSError * _Nonnull error) &#123;</span><br><span class="line">                                             NSLog(@&quot;%d --- %@&quot;, success, error);</span><br><span class="line">                                         &#125;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (IBAction)wechatPayTouchUpInside:(id)sender &#123;</span><br><span class="line">    //  微信支付</span><br><span class="line">    [[CCPaySDK sharedSDK] payWithPayChannel:CCPayChannelWX_APP</span><br><span class="line">                                         pay_params:@&quot;wechatpay_params&quot;</span><br><span class="line">                                     viewController:self</span><br><span class="line">                                         completion:^(BOOL success, NSError * _Nonnull error) &#123;</span><br><span class="line">                                             NSLog(@&quot;%d --- %@&quot;, success, error);</span><br><span class="line">                                         &#125;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (IBAction)unionPayTouchUpInside:(id)sender &#123;</span><br><span class="line">    //  银联支付</span><br><span class="line">    [[CCPaySDK sharedSDK] payWithPayChannel:CCPayChannelUNION_APP</span><br><span class="line">                                         pay_params:@&quot;unionpay_params&quot;</span><br><span class="line">                                     viewController:self</span><br><span class="line">                                         completion:^(BOOL success, NSError * _Nonnull error) &#123;</span><br><span class="line">                                             NSLog(@&quot;%d --- %@&quot;, success, error);</span><br><span class="line">                                         &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.jianshu.com/u/2740921af9d5/2019/05/20/payment/" data-id="ck38rqhdh0002nn0t94c596lp" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/08/08/privateRepo/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          基于GitLab创建CocoaPods私有库
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/04/12/comments/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">iOS 评价控件</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/11/21/alertView/">CCWebView</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/07/command/">iOS 常用Mac终端命令</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/08/privateRepo/">基于GitLab创建CocoaPods私有库</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/20/payment/">iOS 集成支付宝、微信、银联的App聚合支付</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/12/comments/">iOS 评价控件</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 iBlocker<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

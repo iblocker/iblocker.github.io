@@ -85,91 +85,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.jianshu.com/u/2740921af9d5/2019/11/21/alertView/" data-id="ck38pd64d0000330tfjgkcprx" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-privateRepo" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/11/21/privateRepo/" class="article-date">
-  <time datetime="2019-11-21T10:51:34.000Z" itemprop="datePublished">2019-11-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/21/privateRepo/">基于GitLab创建CocoaPods私有库</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>1、概述</strong><br>   CocoaPods是iOS，Mac下优秀的第三方包管理工具，给我们项目管理带来了极大的方便。个人或公司在开发过程中，会积累很多可以复用的代码包，有些我们不想开源，又想像开源库一样在CocoaPods中管理它们，那么通过gitLib创建私有仓库来管理代码就很必要。</p>
-<p><strong>2、概念</strong></p>
-<ul>
-<li>Code Repository是代码仓库，包代码上传到这个仓库。</li>
-<li>Spec Repository是配置仓库，所有的配置按照包名、版本号分门别类的存放在这个仓库。这个仓库只用来存放.Podspec文件，不存放代码。</li>
-</ul>
-<p><strong>3、实现思路</strong><br>创建私有的CocoaPods仓库之前需要先制作CocoaPods依赖库，所以步骤分两步：</p>
-<ul>
-<li>创建私有CocoaPods仓库，也就是版本库。</li>
-<li>创建CocoaPods依赖库，也就是代码库。</li>
-</ul>
-<p><strong>4、实现步骤</strong></p>
-<ul>
-<li><p>创建版本库</p>
-</li>
-<li><p>** GitLab创建Specs Repo仓库</p>
-</li>
-<li><p>** 在终端把远程的私有版本库添加到本地索引<br><code>$ pod repo add MySpecs http://gitlab.xxx.com/xx/MySpecs.git</code><br>这时，~/.cocoapods/reposrepos下会生成文件夹CCSpecs</p>
-</li>
-<li><p>创建代码库</p>
-<ul>
-<li><p>先cd到要创建项目的目录然后执行<code>$ pod lib create MyCategory</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">What platform do you want to use?? [ iOS / macOS ]</span><br><span class="line"> &gt; iOS</span><br><span class="line">What language do you want to use?? [ Swift / ObjC ]</span><br><span class="line"> &gt; ObjC</span><br><span class="line">Would you like to include a demo application with your library? [ Yes / No ]</span><br><span class="line"> &gt; Yes</span><br><span class="line">Which testing frameworks will you use? [ Specta / Kiwi / None ]</span><br><span class="line"> &gt; None</span><br><span class="line">Would you like to do view based testing? [ Yes / No ]</span><br><span class="line"> &gt; No</span><br><span class="line">What is your class prefix?</span><br><span class="line"> &gt; My</span><br></pre></td></tr></table></figure>
-<p>在回到Example路径下，重新执行pod install操作<code>$ pod install</code></p>
-</li>
-<li><p>通过Cocoapods创建出来的目录本身就在本地的Git管理下，我们需要做的就是给它添加远端仓库，同样去GitLab拿到HTTP地址，然后cd到MyCategory目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git add .</span><br><span class="line">$ git commit -s -m &quot;Initial Commit of Library&quot;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编辑podspec文件，直接双击MyCategory.podspec文件打开进行编辑</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">Pod::Spec.new do |s|</span><br><span class="line">  s.name         = &quot;MyCategory&quot; #名称</span><br><span class="line">  s.version      = &quot;0.1.0&quot;        #版本</span><br><span class="line">  s.summary      = &quot;常用类别&quot;      #简介</span><br><span class="line">  s.description  = &quot;集合了开发中常用的类别，包括NSSting、UIView、NSObject、NSArray、NSDictionary……&quot;  #详细描述</span><br><span class="line">  s.homepage     = &quot;http://gitlab.xxx.com/xx/MyCategory&quot;   #主页地址</span><br><span class="line">  #</span><br><span class="line">  s.license      = &#123; :type =&gt; &apos;MIT&apos;, :file =&gt; &apos;LICENSE&apos; &#125;         #开源协议</span><br><span class="line">  # s.license      = &#123; :type =&gt; &quot;MIT&quot;, :file =&gt; &quot;FILE_LICENSE&quot; &#125;</span><br><span class="line">  #</span><br><span class="line">  s.author             = &#123; &quot;iBlocker&quot; =&gt; &quot;iblocker@jianshu.com&quot; &#125;     #作者</span><br><span class="line">  # Or just: s.author    = &quot;iBlocker&quot;</span><br><span class="line">  # s.authors            = &#123; &quot;iBlocker&quot; =&gt; &quot;MyCategory&quot; &#125;</span><br><span class="line">  #</span><br><span class="line">  # s.platform     = :ios</span><br><span class="line">   s.platform     = :ios, &quot;8.0&quot;  #支持的平台及版本</span><br><span class="line">  #  When using multiple platforms</span><br><span class="line">  # s.ios.deployment_target = &quot;5.0&quot;</span><br><span class="line">  # s.osx.deployment_target = &quot;10.7&quot;</span><br><span class="line">  # s.watchos.deployment_target = &quot;2.0&quot;</span><br><span class="line">  # s.tvos.deployment_target = &quot;9.0&quot;</span><br><span class="line">  #</span><br><span class="line">  #  代码地址</span><br><span class="line">  s.source       = &#123; :git =&gt; &quot;http://gitlab.xxx.com/xx/MyCategory.git&quot;, :tag =&gt; s.version.to_s &#125;</span><br><span class="line">  #  代码源文件地址，**/*表示Classes目录及其子目录下所有文件，如果有多个目录下则用逗号分开，如果需要在项目中分组显示，这里也要做相应的设置</span><br><span class="line">  #  s.source_files  = &quot;MyCategory&quot;, &quot;MyCategory/**/*.&#123;h,m&#125;&quot;</span><br><span class="line">  s.subspec &apos;Foundation&apos; do |ss|</span><br><span class="line">    ss.source_files = &apos;MyCategory/Classes/Foundation/*.&#123;h,m&#125;&apos;</span><br><span class="line">    ss.dependency &apos;MyCategory/UIKit&apos;</span><br><span class="line">  end</span><br><span class="line">  s.subspec &apos;UIKit&apos; do |ss|</span><br><span class="line">    ss.source_files = &apos;MyCategory/Classes/UIKit/*.&#123;h,m&#125;&apos;</span><br><span class="line">  #    ss.dependency &apos;MyCategory/Foundation&apos;</span><br><span class="line">  end</span><br><span class="line">  #  s.exclude_files = &quot;MYCategory/Exclude&quot;</span><br><span class="line">  # s.public_header_files = &quot;Classes/**/*.h&quot;</span><br><span class="line">  # s.resource  = &quot;icon.png&quot;  #资源路径</span><br><span class="line">  # s.resources = &quot;Resources/*.png&quot;</span><br><span class="line">  # s.preserve_paths = &quot;FilesToSave&quot;, &quot;MoreFilesToSave&quot;</span><br><span class="line">   s.framework  = &quot;UIKit&quot;  #使用到的系统库</span><br><span class="line">  # s.frameworks = &quot;UIKit&quot;, &quot;Foundation&quot;</span><br><span class="line">  # s.library   = &quot;iconv&quot;</span><br><span class="line">  # s.libraries = &quot;iconv&quot;, &quot;xml2&quot;</span><br><span class="line">   s.requires_arc = true      #是否使用ARC，如果指定具体文件，则具体的问题使用ARC</span><br><span class="line">  # s.xcconfig = &#123; &quot;HEADER_SEARCH_PATHS&quot; =&gt; &quot;$(SDKROOT)/usr/include/libxml2&quot; &#125;</span><br><span class="line">  # s.dependency &quot;JSONKit&quot;, &quot;~&gt; 1.4&quot;    #依赖关系，该项目所依赖的其他库，如果有多个需要填写多个s.dependency</span><br></pre></td></tr></table></figure></li>
-<li><p>编辑完podspec文件后，需要验证一下这个文件是否可用，如果有任何WARNING或者ERROR都是不可以的，它就不能被添加到Spec Repo中，不过xcode的WARNING是可以存在的，验证需要执行一下命令<code>$ pod lib lint</code><br>当看到以下输出说明成功了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-&gt; MyCategory (0.1.0)</span><br><span class="line">​</span><br><span class="line">MyCategory passed validation.</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>因为podspec文件中获取Git版本控制的项目还需要tag号，所以我们要打上一个tag</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">$ git add .</span><br><span class="line">$ git commit -m &apos;编辑spec文件&apos;</span><br><span class="line">#添加远端仓库 若已存在远端仓库，则跳过添加</span><br><span class="line">$ git remote add origin http://gitlab.xxx.com/xx/MyCategory.git</span><br><span class="line">#提交到远端</span><br><span class="line">$ git push origin master</span><br><span class="line">$ git tag -m &quot;first release&quot; &quot;0.1.0&quot; (MyCategory.podspec文件中的tag值保持一致)</span><br><span class="line">#推送tag到远端仓库</span><br><span class="line">$ git push --tags</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>向Spec Repo提交podspec注意</p>
-<ul>
-<li>向Spec Repo提交podspec必须确保podspec通过验证无误！！！</li>
-<li>按规范删掉无用的注释</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>提交<code>$ pod repo push MySpecs MyCategory.podspec</code></p>
-</li>
-</ul>
-<p><strong>注：该内容非本人原创，流程已经验证，若有侵权，私信立删！</strong></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.jianshu.com/u/2740921af9d5/2019/11/21/privateRepo/" data-id="ck38pd64k0001330t4cex5hrp" class="article-share-link">Share</a>
+      <a data-url="https://www.jianshu.com/u/2740921af9d5/2019/11/21/alertView/" data-id="ck38rqhd80000nn0tbptn7f21" class="article-share-link">Share</a>
       
       
     </footer>
@@ -181,8 +97,8 @@
   
     <article id="post-command" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/11/21/command/" class="article-date">
-  <time datetime="2019-11-21T10:29:03.922Z" itemprop="datePublished">2019-11-21</time>
+    <a href="/2019/11/07/command/" class="article-date">
+  <time datetime="2019-11-07T10:51:34.000Z" itemprop="datePublished">2019-11-07</time>
 </a>
     
   </div>
@@ -193,7 +109,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/21/command/">iOS 常用Mac终端命令</a>
+      <a class="article-title" href="/2019/11/07/command/">iOS 常用Mac终端命令</a>
     </h1>
   
 
@@ -256,7 +172,191 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.jianshu.com/u/2740921af9d5/2019/11/21/command/" data-id="ck38p78q50002vx0te35hck19" class="article-share-link">Share</a>
+      <a data-url="https://www.jianshu.com/u/2740921af9d5/2019/11/07/command/" data-id="ck38rqhdf0001nn0t0xsdcpvo" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-privateRepo" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/08/privateRepo/" class="article-date">
+  <time datetime="2019-08-08T10:51:34.000Z" itemprop="datePublished">2019-08-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/08/privateRepo/">基于GitLab创建CocoaPods私有库</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>1、概述</strong><br>   CocoaPods是iOS，Mac下优秀的第三方包管理工具，给我们项目管理带来了极大的方便。个人或公司在开发过程中，会积累很多可以复用的代码包，有些我们不想开源，又想像开源库一样在CocoaPods中管理它们，那么通过gitLib创建私有仓库来管理代码就很必要。</p>
+<p><strong>2、概念</strong></p>
+<ul>
+<li>Code Repository是代码仓库，包代码上传到这个仓库。</li>
+<li>Spec Repository是配置仓库，所有的配置按照包名、版本号分门别类的存放在这个仓库。这个仓库只用来存放.Podspec文件，不存放代码。</li>
+</ul>
+<p><strong>3、实现思路</strong><br>创建私有的CocoaPods仓库之前需要先制作CocoaPods依赖库，所以步骤分两步：</p>
+<ul>
+<li>创建私有CocoaPods仓库，也就是版本库。</li>
+<li>创建CocoaPods依赖库，也就是代码库。</li>
+</ul>
+<p><strong>4、实现步骤</strong></p>
+<ul>
+<li><p>创建版本库</p>
+</li>
+<li><p>** GitLab创建Specs Repo仓库</p>
+</li>
+<li><p>** 在终端把远程的私有版本库添加到本地索引<br><code>$ pod repo add MySpecs http://gitlab.xxx.com/xx/MySpecs.git</code><br>这时，~/.cocoapods/reposrepos下会生成文件夹CCSpecs</p>
+</li>
+<li><p>创建代码库</p>
+<ul>
+<li><p>先cd到要创建项目的目录然后执行<code>$ pod lib create MyCategory</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">What platform do you want to use?? [ iOS / macOS ]</span><br><span class="line"> &gt; iOS</span><br><span class="line">What language do you want to use?? [ Swift / ObjC ]</span><br><span class="line"> &gt; ObjC</span><br><span class="line">Would you like to include a demo application with your library? [ Yes / No ]</span><br><span class="line"> &gt; Yes</span><br><span class="line">Which testing frameworks will you use? [ Specta / Kiwi / None ]</span><br><span class="line"> &gt; None</span><br><span class="line">Would you like to do view based testing? [ Yes / No ]</span><br><span class="line"> &gt; No</span><br><span class="line">What is your class prefix?</span><br><span class="line"> &gt; My</span><br></pre></td></tr></table></figure>
+<p>在回到Example路径下，重新执行pod install操作<code>$ pod install</code></p>
+</li>
+<li><p>通过Cocoapods创建出来的目录本身就在本地的Git管理下，我们需要做的就是给它添加远端仓库，同样去GitLab拿到HTTP地址，然后cd到MyCategory目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git add .</span><br><span class="line">$ git commit -s -m &quot;Initial Commit of Library&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编辑podspec文件，直接双击MyCategory.podspec文件打开进行编辑</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">Pod::Spec.new do |s|</span><br><span class="line">  s.name         = &quot;MyCategory&quot; #名称</span><br><span class="line">  s.version      = &quot;0.1.0&quot;        #版本</span><br><span class="line">  s.summary      = &quot;常用类别&quot;      #简介</span><br><span class="line">  s.description  = &quot;集合了开发中常用的类别，包括NSSting、UIView、NSObject、NSArray、NSDictionary……&quot;  #详细描述</span><br><span class="line">  s.homepage     = &quot;http://gitlab.xxx.com/xx/MyCategory&quot;   #主页地址</span><br><span class="line">  #</span><br><span class="line">  s.license      = &#123; :type =&gt; &apos;MIT&apos;, :file =&gt; &apos;LICENSE&apos; &#125;         #开源协议</span><br><span class="line">  # s.license      = &#123; :type =&gt; &quot;MIT&quot;, :file =&gt; &quot;FILE_LICENSE&quot; &#125;</span><br><span class="line">  #</span><br><span class="line">  s.author             = &#123; &quot;iBlocker&quot; =&gt; &quot;iblocker@jianshu.com&quot; &#125;     #作者</span><br><span class="line">  # Or just: s.author    = &quot;iBlocker&quot;</span><br><span class="line">  # s.authors            = &#123; &quot;iBlocker&quot; =&gt; &quot;MyCategory&quot; &#125;</span><br><span class="line">  #</span><br><span class="line">  # s.platform     = :ios</span><br><span class="line">   s.platform     = :ios, &quot;8.0&quot;  #支持的平台及版本</span><br><span class="line">  #  When using multiple platforms</span><br><span class="line">  # s.ios.deployment_target = &quot;5.0&quot;</span><br><span class="line">  # s.osx.deployment_target = &quot;10.7&quot;</span><br><span class="line">  # s.watchos.deployment_target = &quot;2.0&quot;</span><br><span class="line">  # s.tvos.deployment_target = &quot;9.0&quot;</span><br><span class="line">  #</span><br><span class="line">  #  代码地址</span><br><span class="line">  s.source       = &#123; :git =&gt; &quot;http://gitlab.xxx.com/xx/MyCategory.git&quot;, :tag =&gt; s.version.to_s &#125;</span><br><span class="line">  #  代码源文件地址，**/*表示Classes目录及其子目录下所有文件，如果有多个目录下则用逗号分开，如果需要在项目中分组显示，这里也要做相应的设置</span><br><span class="line">  #  s.source_files  = &quot;MyCategory&quot;, &quot;MyCategory/**/*.&#123;h,m&#125;&quot;</span><br><span class="line">  s.subspec &apos;Foundation&apos; do |ss|</span><br><span class="line">    ss.source_files = &apos;MyCategory/Classes/Foundation/*.&#123;h,m&#125;&apos;</span><br><span class="line">    ss.dependency &apos;MyCategory/UIKit&apos;</span><br><span class="line">  end</span><br><span class="line">  s.subspec &apos;UIKit&apos; do |ss|</span><br><span class="line">    ss.source_files = &apos;MyCategory/Classes/UIKit/*.&#123;h,m&#125;&apos;</span><br><span class="line">  #    ss.dependency &apos;MyCategory/Foundation&apos;</span><br><span class="line">  end</span><br><span class="line">  #  s.exclude_files = &quot;MYCategory/Exclude&quot;</span><br><span class="line">  # s.public_header_files = &quot;Classes/**/*.h&quot;</span><br><span class="line">  # s.resource  = &quot;icon.png&quot;  #资源路径</span><br><span class="line">  # s.resources = &quot;Resources/*.png&quot;</span><br><span class="line">  # s.preserve_paths = &quot;FilesToSave&quot;, &quot;MoreFilesToSave&quot;</span><br><span class="line">   s.framework  = &quot;UIKit&quot;  #使用到的系统库</span><br><span class="line">  # s.frameworks = &quot;UIKit&quot;, &quot;Foundation&quot;</span><br><span class="line">  # s.library   = &quot;iconv&quot;</span><br><span class="line">  # s.libraries = &quot;iconv&quot;, &quot;xml2&quot;</span><br><span class="line">   s.requires_arc = true      #是否使用ARC，如果指定具体文件，则具体的问题使用ARC</span><br><span class="line">  # s.xcconfig = &#123; &quot;HEADER_SEARCH_PATHS&quot; =&gt; &quot;$(SDKROOT)/usr/include/libxml2&quot; &#125;</span><br><span class="line">  # s.dependency &quot;JSONKit&quot;, &quot;~&gt; 1.4&quot;    #依赖关系，该项目所依赖的其他库，如果有多个需要填写多个s.dependency</span><br></pre></td></tr></table></figure></li>
+<li><p>编辑完podspec文件后，需要验证一下这个文件是否可用，如果有任何WARNING或者ERROR都是不可以的，它就不能被添加到Spec Repo中，不过xcode的WARNING是可以存在的，验证需要执行一下命令<code>$ pod lib lint</code><br>当看到以下输出说明成功了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-&gt; MyCategory (0.1.0)</span><br><span class="line">​</span><br><span class="line">MyCategory passed validation.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>因为podspec文件中获取Git版本控制的项目还需要tag号，所以我们要打上一个tag</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">$ git add .</span><br><span class="line">$ git commit -m &apos;编辑spec文件&apos;</span><br><span class="line">#添加远端仓库 若已存在远端仓库，则跳过添加</span><br><span class="line">$ git remote add origin http://gitlab.xxx.com/xx/MyCategory.git</span><br><span class="line">#提交到远端</span><br><span class="line">$ git push origin master</span><br><span class="line">$ git tag -m &quot;first release&quot; &quot;0.1.0&quot; (MyCategory.podspec文件中的tag值保持一致)</span><br><span class="line">#推送tag到远端仓库</span><br><span class="line">$ git push --tags</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>向Spec Repo提交podspec注意</p>
+<ul>
+<li>向Spec Repo提交podspec必须确保podspec通过验证无误！！！</li>
+<li>按规范删掉无用的注释</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>提交<code>$ pod repo push MySpecs MyCategory.podspec</code></p>
+</li>
+</ul>
+<p><strong>注：该内容非本人原创，流程已经验证，若有侵权，私信立删！</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.jianshu.com/u/2740921af9d5/2019/08/08/privateRepo/" data-id="ck38rqhe20004nn0tffu83sqd" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-payment" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/20/payment/" class="article-date">
+  <time datetime="2019-05-20T13:14:13.000Z" itemprop="datePublished">2019-05-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/20/payment/">iOS 集成支付宝、微信、银联的App聚合支付</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="CCPaySDK"><a href="#CCPaySDK" class="headerlink" title="CCPaySDK"></a><a href="https://github.com/iblocker/CCPaySDKDemo" target="_blank" rel="noopener">CCPaySDK</a></h4><hr>
+<p><strong>1.三方库依赖</strong></p>
+<p>1.1 CocoaPods导入三方依赖库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pod &apos;AlipaySDK-iOS&apos;</span><br><span class="line">pod &apos;WechatOpenSDK&apos;</span><br><span class="line">pod &apos;MJExtension&apos;</span><br></pre></td></tr></table></figure>
+<p>1.2 手动引入银联依赖库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">UPPaymentControl.h</span><br><span class="line">libPaymentControl.a</span><br></pre></td></tr></table></figure>
+<p>1.3 Library Binary With Libraries引入依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CFNetwork.framework</span><br><span class="line">SystemConfiguration.framework</span><br><span class="line">libz.tdb</span><br></pre></td></tr></table></figure>
+
+<p><strong>2.代码示例</strong></p>
+<p>2.1 SDK回调Code类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">typedef NS_ENUM(NSUInteger, CCPayErrorCode) &#123;</span><br><span class="line">    CCPayErrorCodeSuccess                 = 0,        //  支付成功</span><br><span class="line">    CCPayErrorCodeUnknown                 = 100000,   //  未知错误</span><br><span class="line">    CCPayErrorCodeNotInstalled            = 100001,   //  程序未安装</span><br><span class="line">    CCPayErrorCodeFailed                  = 100002,   //  支付失败</span><br><span class="line">    CCPayErrorCodeCancel                  = 100003,   //  支付取消</span><br><span class="line">    CCPayErrorCodeDealing                 = 100004,   //  交易处理中</span><br><span class="line">    CCPayErrorCodeTemporarilyNotOpened    = 100099    //  功能暂未开放</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>2.2 方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">/** SDK版本号*/</span><br><span class="line">@property (nonatomic, readonly, copy) NSString *version;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> 单例方法</span><br><span class="line"> </span><br><span class="line"> @return 单例对象</span><br><span class="line"> */</span><br><span class="line">+ (instancetype)sharedSDK;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> 注册微信支付 若要支持微信支付，则必须注册</span><br><span class="line"> </span><br><span class="line"> @param appId 微信AppId</span><br><span class="line"> @return 注册结果</span><br><span class="line"> */</span><br><span class="line">- (BOOL)registerWXAppId:(NSString *)appId;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> 打开支付Url</span><br><span class="line"> </span><br><span class="line"> @param url Url</span><br><span class="line"> @return 是否打开</span><br><span class="line"> */</span><br><span class="line">- (BOOL)openPayURL:(NSURL *)url;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> 支付</span><br><span class="line"> </span><br><span class="line"> @param payChannel      支付方式</span><br><span class="line"> @param pay_params      支付参数</span><br><span class="line"> @param viewController  调起支付的视图控制器</span><br><span class="line"> @param completion      完成回调</span><br><span class="line"> */</span><br><span class="line">- (void)payWithPayChannel:(CCPayChannel)payChannel</span><br><span class="line">               pay_params:(NSString *)pay_params</span><br><span class="line">           viewController:(UIViewController *)viewController</span><br><span class="line">               completion:(void (^)(BOOL success, NSError *error))completion;</span><br></pre></td></tr></table></figure>
+
+<p>2.3.1 注册微信AppId</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//  若要支持微信支付，则必须注册微信支付</span><br><span class="line">[[CCPayManager sharedManager] registerWXAppId:@&quot;wx0000000000000000&quot;];</span><br></pre></td></tr></table></figure>
+
+<p>2.3.2 获取SDK版本号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSString *version = [CCPayManager sharedManager].version;</span><br></pre></td></tr></table></figure>
+
+<p>2.3.3 处理OpenUrl</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url &#123;</span><br><span class="line">    return [[CCPaySDK sharedSDK] openPayURL:url];</span><br><span class="line">&#125;</span><br><span class="line">- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(nullable NSString *)sourceApplication annotation:(id)annotation &#123;</span><br><span class="line">    return [[CCPaySDK sharedSDK] openPayURL:url];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary&lt;UIApplicationOpenURLOptionsKey,id&gt; *)options NS_AVAILABLE_IOS(9_0) &#123;</span><br><span class="line">    return [[CCPaySDK sharedSDK] openPayURL:url];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.3.4 支付示例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">- (IBAction)aliPayTouchUpInside:(id)sender &#123;</span><br><span class="line">    //  支付宝支付</span><br><span class="line">   [[CCPaySDK sharedSDK] payWithPayChannel:CCPayChannelALIPAY_MOBILE</span><br><span class="line">                                         pay_params:@&quot;alipay_params&quot;</span><br><span class="line">                                     viewController:self</span><br><span class="line">                                         completion:^(BOOL success, NSError * _Nonnull error) &#123;</span><br><span class="line">                                             NSLog(@&quot;%d --- %@&quot;, success, error);</span><br><span class="line">                                         &#125;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (IBAction)wechatPayTouchUpInside:(id)sender &#123;</span><br><span class="line">    //  微信支付</span><br><span class="line">    [[CCPaySDK sharedSDK] payWithPayChannel:CCPayChannelWX_APP</span><br><span class="line">                                         pay_params:@&quot;wechatpay_params&quot;</span><br><span class="line">                                     viewController:self</span><br><span class="line">                                         completion:^(BOOL success, NSError * _Nonnull error) &#123;</span><br><span class="line">                                             NSLog(@&quot;%d --- %@&quot;, success, error);</span><br><span class="line">                                         &#125;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (IBAction)unionPayTouchUpInside:(id)sender &#123;</span><br><span class="line">    //  银联支付</span><br><span class="line">    [[CCPaySDK sharedSDK] payWithPayChannel:CCPayChannelUNION_APP</span><br><span class="line">                                         pay_params:@&quot;unionpay_params&quot;</span><br><span class="line">                                     viewController:self</span><br><span class="line">                                         completion:^(BOOL success, NSError * _Nonnull error) &#123;</span><br><span class="line">                                             NSLog(@&quot;%d --- %@&quot;, success, error);</span><br><span class="line">                                         &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.jianshu.com/u/2740921af9d5/2019/05/20/payment/" data-id="ck38rqhdh0002nn0t94c596lp" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-comments" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/12/comments/" class="article-date">
+  <time datetime="2019-04-12T13:16:42.000Z" itemprop="datePublished">2019-04-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/12/comments/">iOS 评价控件</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://github.com/iblocker/CCComments" target="_blank" rel="noopener">Demo下载地址</a></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2377435-fcf4d87272957b7c.gif?imageMogr2/auto-orient/strip" alt="这是一个评价控件效果图"><br>使用的三方库：<br>1、星级评价，使用了<a href="https://github.com/DQ-qi/DQStarView" target="_blank" rel="noopener">DQStarView</a><br>2、输入框，使用了<a href="https://github.com/ibireme/YYText" target="_blank" rel="noopener">YYText</a>的YYTextView</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.jianshu.com/u/2740921af9d5/2019/04/12/comments/" data-id="ck38rqhdl0003nn0tb711hnqi" class="article-share-link">Share</a>
       
       
     </footer>
@@ -284,7 +384,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
     </div>
   </div>
 
@@ -301,11 +401,19 @@
           </li>
         
           <li>
-            <a href="/2019/11/21/privateRepo/">基于GitLab创建CocoaPods私有库</a>
+            <a href="/2019/11/07/command/">iOS 常用Mac终端命令</a>
           </li>
         
           <li>
-            <a href="/2019/11/21/command/">iOS 常用Mac终端命令</a>
+            <a href="/2019/08/08/privateRepo/">基于GitLab创建CocoaPods私有库</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/20/payment/">iOS 集成支付宝、微信、银联的App聚合支付</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/12/comments/">iOS 评价控件</a>
           </li>
         
       </ul>
