@@ -5,14 +5,17 @@
   
 
   
-  <title>iBlocker</title>
+  <title>基于GitLab创建CocoaPods私有库 | iBlocker</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="iOS开发者">
-<meta property="og:type" content="website">
-<meta property="og:title" content="iBlocker">
-<meta property="og:url" content="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;2740921af9d5&#x2F;index.html">
+  <meta name="description" content="1、概述   CocoaPods是iOS，Mac下优秀的第三方包管理工具，给我们项目管理带来了极大的方便。个人或公司在开发过程中，会积累很多可以复用的代码包，有些我们不想开源，又想像开源库一样在CocoaPods中管理它们，那么通过gitLib创建私有仓库来管理代码就很必要。 2、概念  Code Repository是代码仓库，包代码上传到这个仓库。 Spec Repository是配置仓库，所">
+<meta name="keywords" content="iOS开发者">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于GitLab创建CocoaPods私有库">
+<meta property="og:url" content="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;2740921af9d5&#x2F;2019&#x2F;11&#x2F;21&#x2F;PrivateRepo&#x2F;index.html">
 <meta property="og:site_name" content="iBlocker">
+<meta property="og:description" content="1、概述   CocoaPods是iOS，Mac下优秀的第三方包管理工具，给我们项目管理带来了极大的方便。个人或公司在开发过程中，会积累很多可以复用的代码包，有些我们不想开源，又想像开源库一样在CocoaPods中管理它们，那么通过gitLib创建私有仓库来管理代码就很必要。 2、概念  Code Repository是代码仓库，包代码上传到这个仓库。 Spec Repository是配置仓库，所">
 <meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-11-21T10:52:04.673Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="iBlocker" type="application/atom+xml">
@@ -60,9 +63,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-PrivateRepo" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-PrivateRepo" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/11/21/PrivateRepo/" class="article-date">
   <time datetime="2019-11-21T10:51:34.000Z" itemprop="datePublished">2019-11-21</time>
@@ -75,8 +76,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/21/PrivateRepo/">基于GitLab创建CocoaPods私有库</a>
+    <h1 class="article-title" itemprop="name">
+      基于GitLab创建CocoaPods私有库
     </h1>
   
 
@@ -142,98 +143,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-command" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/11/21/command/" class="article-date">
-  <time datetime="2019-11-21T10:29:03.922Z" itemprop="datePublished">2019-11-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/21/command/">iOS 常用Mac终端命令</a>
-    </h1>
+    <a href="/2019/11/21/command/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">iOS 常用Mac终端命令</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>1.<code>pwd</code>（显示当前目录层次）</strong></p>
-<p><strong>2.<code>ls</code>显示文件</strong></p>
-<ul>
-<li><code>ls</code> 显示在当前目录下的所有文件或文件夹</li>
-<li><code>ls 【目录】</code> 显示在该目录下的所有文件或文件夹</li>
-<li><code>ls -a</code> 显示当前目录下隐藏文件</li>
-<li><code>ls -l</code> 显示当前目录下详细信息</li>
-<li><code>ls -R</code> 显示当前目录下子目录文件</li>
-<li><code>ls -w</code> 显示当前目录下中文文件</li>
-<li><code>ls -la</code> 显示所有文件</li>
-<li><code>ls -G</code> 带颜色显示</li>
-</ul>
-<p><strong>3.cd    打开文件夹</strong></p>
-<ul>
-<li><code>cd .</code> 表示当前目录</li>
-<li><code>cd ..</code> 表示返回上一级目录</li>
-<li><code>cd ../..</code> 表示返回上两级</li>
-<li><code>cd 【目录】</code> 表示将从当前路径进入到下一目录</li>
-<li><code>cd 〜</code> 表示从当前目录进入到用户</li>
-<li><code>cd /</code> 表示从当前目录进入根</li>
-</ul>
-<p><strong>4.mkdir</strong></p>
-<ul>
-<li><code>mkdir 【文件夹名】</code> 表示创建一个文件夹</li>
-<li><code>mkdir 【绝对路径】</code> 表示创建一个文件夹和上面的功能相同,只不过上面是通过相对路径创建, 下面是通过绝对路径创建.</li>
-</ul>
-<p><strong>5.rmdir</strong></p>
-<ul>
-<li><code>rmdir 【文件夹名】</code> 表示删除一个文件夹</li>
-<li><code>rmdir 【绝对路径】</code> 表示删除一个文件夹和上面的功能相同,只不过上面是通过相对路径删除,下面是通过绝对路径删除</li>
-</ul>
-<p><strong>6.touch</strong></p>
-<ul>
-<li><code>touch 【文件名】</code> 新建一个文件</li>
-</ul>
-<p><strong>7.rm</strong></p>
-<ul>
-<li><p><code>rm 【文件名】</code> 表示删除一个文件</p>
-</li>
-<li><p><code>rm －rf 【文件路径】</code> 表示删除文件路径下的所有文件夹及文件</p>
-<p><strong><code>rm -rf /</code>会删除整个磁盘，慎用！</strong></p>
-</li>
-</ul>
-<p><strong>8.cp</strong></p>
-<p><code>cp 【参数】 【源文件】 【目标路径】</code></p>
-<p>eg.<code>cp -R /User/用户名/Desktop/abc /System/Library/Extensions</code>把桌面的abc文件夹及其子文件拷贝到驱动目录中 参数 R 表示对目录进行递归操作。</p>
-<p><strong>9.mv</strong></p>
-<p><code>mv 【源文件】 【目标路径】</code></p>
-<p><code>mv 【需要移动的文件或文件夹】 【目标路径 (相对路径或绝对路径)】</code></p>
-<p><code>mv a.c b.c 表示将a.c 重命名为b.c</code></p>
-<p><strong>10.clear 清除屏幕</strong></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.jianshu.com/u/2740921af9d5/2019/11/21/command/" data-id="ck38ljb4b0001ul0the4ih5rw" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-
 
 </section>
         
