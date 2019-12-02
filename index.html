@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>iBlocker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="iOS开发者">
+<meta property="og:type" content="website">
+<meta property="og:title" content="iBlocker">
+<meta property="og:url" content="https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;2740921af9d5&#x2F;index.html">
+<meta property="og:site_name" content="iBlocker">
+<meta property="og:locale" content="zh">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">iBlocker</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://www.jianshu.com/u/2740921af9d5"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-command" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/07/command/" class="article-date">
+  <time datetime="2019-11-07T10:51:34.000Z" itemprop="datePublished">2019-11-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/07/command/">iOS 常用Mac终端命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>1.<code>pwd</code>（显示当前目录层次）</strong></p>
+<p><strong>2.<code>ls</code>显示文件</strong></p>
+<ul>
+<li><code>ls</code> 显示在当前目录下的所有文件或文件夹</li>
+<li><code>ls 【目录】</code> 显示在该目录下的所有文件或文件夹</li>
+<li><code>ls -a</code> 显示当前目录下隐藏文件</li>
+<li><code>ls -l</code> 显示当前目录下详细信息</li>
+<li><code>ls -R</code> 显示当前目录下子目录文件</li>
+<li><code>ls -w</code> 显示当前目录下中文文件</li>
+<li><code>ls -la</code> 显示所有文件</li>
+<li><code>ls -G</code> 带颜色显示</li>
+</ul>
+<p><strong>3.cd    打开文件夹</strong></p>
+<ul>
+<li><code>cd .</code> 表示当前目录</li>
+<li><code>cd ..</code> 表示返回上一级目录</li>
+<li><code>cd ../..</code> 表示返回上两级</li>
+<li><code>cd 【目录】</code> 表示将从当前路径进入到下一目录</li>
+<li><code>cd 〜</code> 表示从当前目录进入到用户</li>
+<li><code>cd /</code> 表示从当前目录进入根</li>
+</ul>
+<p><strong>4.mkdir</strong></p>
+<ul>
+<li><code>mkdir 【文件夹名】</code> 表示创建一个文件夹</li>
+<li><code>mkdir 【绝对路径】</code> 表示创建一个文件夹和上面的功能相同,只不过上面是通过相对路径创建, 下面是通过绝对路径创建.</li>
+</ul>
+<p><strong>5.rmdir</strong></p>
+<ul>
+<li><code>rmdir 【文件夹名】</code> 表示删除一个文件夹</li>
+<li><code>rmdir 【绝对路径】</code> 表示删除一个文件夹和上面的功能相同,只不过上面是通过相对路径删除,下面是通过绝对路径删除</li>
+</ul>
+<p><strong>6.touch</strong></p>
+<ul>
+<li><code>touch 【文件名】</code> 新建一个文件</li>
+</ul>
+<p><strong>7.rm</strong></p>
+<ul>
+<li><p><code>rm 【文件名】</code> 表示删除一个文件</p>
+</li>
+<li><p><code>rm －rf 【文件路径】</code> 表示删除文件路径下的所有文件夹及文件</p>
+<p><strong><code>rm -rf /</code>会删除整个磁盘，慎用！</strong></p>
+</li>
+</ul>
+<p><strong>8.cp</strong></p>
+<p><code>cp 【参数】 【源文件】 【目标路径】</code></p>
+<p>eg.<code>cp -R /User/用户名/Desktop/abc /System/Library/Extensions</code>把桌面的abc文件夹及其子文件拷贝到驱动目录中 参数 R 表示对目录进行递归操作。</p>
+<p><strong>9.mv</strong></p>
+<p><code>mv 【源文件】 【目标路径】</code></p>
+<p><code>mv 【需要移动的文件或文件夹】 【目标路径 (相对路径或绝对路径)】</code></p>
+<p><code>mv a.c b.c 表示将a.c 重命名为b.c</code></p>
+<p><strong>10.clear 清除屏幕</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.jianshu.com/u/2740921af9d5/2019/11/07/command/" data-id="ck3nw3b290001760thcuz3du0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-privateRepo" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/08/privateRepo/" class="article-date">
+  <time datetime="2019-08-08T10:51:34.000Z" itemprop="datePublished">2019-08-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/08/privateRepo/">基于GitLab创建CocoaPods私有库</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>1、概述</strong><br>   CocoaPods是iOS，Mac下优秀的第三方包管理工具，给我们项目管理带来了极大的方便。个人或公司在开发过程中，会积累很多可以复用的代码包，有些我们不想开源，又想像开源库一样在CocoaPods中管理它们，那么通过gitLib创建私有仓库来管理代码就很必要。</p>
+<p><strong>2、概念</strong></p>
+<ul>
+<li>Code Repository是代码仓库，包代码上传到这个仓库。</li>
+<li>Spec Repository是配置仓库，所有的配置按照包名、版本号分门别类的存放在这个仓库。这个仓库只用来存放.Podspec文件，不存放代码。</li>
+</ul>
+<p><strong>3、实现思路</strong><br>创建私有的CocoaPods仓库之前需要先制作CocoaPods依赖库，所以步骤分两步：</p>
+<ul>
+<li>创建私有CocoaPods仓库，也就是版本库。</li>
+<li>创建CocoaPods依赖库，也就是代码库。</li>
+</ul>
+<p><strong>4、实现步骤</strong></p>
+<ul>
+<li><p>创建版本库</p>
+</li>
+<li><p>** GitLab创建Specs Repo仓库</p>
+</li>
+<li><p>** 在终端把远程的私有版本库添加到本地索引<br><code>$ pod repo add MySpecs http://gitlab.xxx.com/xx/MySpecs.git</code><br>这时，~/.cocoapods/reposrepos下会生成文件夹CCSpecs</p>
+</li>
+<li><p>创建代码库</p>
+<ul>
+<li><p>先cd到要创建项目的目录然后执行<code>$ pod lib create MyCategory</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">What platform do you want to use?? [ iOS / macOS ]</span><br><span class="line"> &gt; iOS</span><br><span class="line">What language do you want to use?? [ Swift / ObjC ]</span><br><span class="line"> &gt; ObjC</span><br><span class="line">Would you like to include a demo application with your library? [ Yes / No ]</span><br><span class="line"> &gt; Yes</span><br><span class="line">Which testing frameworks will you use? [ Specta / Kiwi / None ]</span><br><span class="line"> &gt; None</span><br><span class="line">Would you like to do view based testing? [ Yes / No ]</span><br><span class="line"> &gt; No</span><br><span class="line">What is your class prefix?</span><br><span class="line"> &gt; My</span><br></pre></td></tr></table></figure>
+<p>在回到Example路径下，重新执行pod install操作<code>$ pod install</code></p>
+</li>
+<li><p>通过Cocoapods创建出来的目录本身就在本地的Git管理下，我们需要做的就是给它添加远端仓库，同样去GitLab拿到HTTP地址，然后cd到MyCategory目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git add .</span><br><span class="line">$ git commit -s -m &quot;Initial Commit of Library&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编辑podspec文件，直接双击MyCategory.podspec文件打开进行编辑</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">Pod::Spec.new do |s|</span><br><span class="line">  s.name         = &quot;MyCategory&quot; #名称</span><br><span class="line">  s.version      = &quot;0.1.0&quot;        #版本</span><br><span class="line">  s.summary      = &quot;常用类别&quot;      #简介</span><br><span class="line">  s.description  = &quot;集合了开发中常用的类别，包括NSSting、UIView、NSObject、NSArray、NSDictionary……&quot;  #详细描述</span><br><span class="line">  s.homepage     = &quot;http://gitlab.xxx.com/xx/MyCategory&quot;   #主页地址</span><br><span class="line">  #</span><br><span class="line">  s.license      = &#123; :type =&gt; &apos;MIT&apos;, :file =&gt; &apos;LICENSE&apos; &#125;         #开源协议</span><br><span class="line">  # s.license      = &#123; :type =&gt; &quot;MIT&quot;, :file =&gt; &quot;FILE_LICENSE&quot; &#125;</span><br><span class="line">  #</span><br><span class="line">  s.author             = &#123; &quot;iBlocker&quot; =&gt; &quot;iblocker@jianshu.com&quot; &#125;     #作者</span><br><span class="line">  # Or just: s.author    = &quot;iBlocker&quot;</span><br><span class="line">  # s.authors            = &#123; &quot;iBlocker&quot; =&gt; &quot;MyCategory&quot; &#125;</span><br><span class="line">  #</span><br><span class="line">  # s.platform     = :ios</span><br><span class="line">   s.platform     = :ios, &quot;8.0&quot;  #支持的平台及版本</span><br><span class="line">  #  When using multiple platforms</span><br><span class="line">  # s.ios.deployment_target = &quot;5.0&quot;</span><br><span class="line">  # s.osx.deployment_target = &quot;10.7&quot;</span><br><span class="line">  # s.watchos.deployment_target = &quot;2.0&quot;</span><br><span class="line">  # s.tvos.deployment_target = &quot;9.0&quot;</span><br><span class="line">  #</span><br><span class="line">  #  代码地址</span><br><span class="line">  s.source       = &#123; :git =&gt; &quot;http://gitlab.xxx.com/xx/MyCategory.git&quot;, :tag =&gt; s.version.to_s &#125;</span><br><span class="line">  #  代码源文件地址，**/*表示Classes目录及其子目录下所有文件，如果有多个目录下则用逗号分开，如果需要在项目中分组显示，这里也要做相应的设置</span><br><span class="line">  #  s.source_files  = &quot;MyCategory&quot;, &quot;MyCategory/**/*.&#123;h,m&#125;&quot;</span><br><span class="line">  s.subspec &apos;Foundation&apos; do |ss|</span><br><span class="line">    ss.source_files = &apos;MyCategory/Classes/Foundation/*.&#123;h,m&#125;&apos;</span><br><span class="line">    ss.dependency &apos;MyCategory/UIKit&apos;</span><br><span class="line">  end</span><br><span class="line">  s.subspec &apos;UIKit&apos; do |ss|</span><br><span class="line">    ss.source_files = &apos;MyCategory/Classes/UIKit/*.&#123;h,m&#125;&apos;</span><br><span class="line">  #    ss.dependency &apos;MyCategory/Foundation&apos;</span><br><span class="line">  end</span><br><span class="line">  #  s.exclude_files = &quot;MYCategory/Exclude&quot;</span><br><span class="line">  # s.public_header_files = &quot;Classes/**/*.h&quot;</span><br><span class="line">  # s.resource  = &quot;icon.png&quot;  #资源路径</span><br><span class="line">  # s.resources = &quot;Resources/*.png&quot;</span><br><span class="line">  # s.preserve_paths = &quot;FilesToSave&quot;, &quot;MoreFilesToSave&quot;</span><br><span class="line">   s.framework  = &quot;UIKit&quot;  #使用到的系统库</span><br><span class="line">  # s.frameworks = &quot;UIKit&quot;, &quot;Foundation&quot;</span><br><span class="line">  # s.library   = &quot;iconv&quot;</span><br><span class="line">  # s.libraries = &quot;iconv&quot;, &quot;xml2&quot;</span><br><span class="line">   s.requires_arc = true      #是否使用ARC，如果指定具体文件，则具体的问题使用ARC</span><br><span class="line">  # s.xcconfig = &#123; &quot;HEADER_SEARCH_PATHS&quot; =&gt; &quot;$(SDKROOT)/usr/include/libxml2&quot; &#125;</span><br><span class="line">  # s.dependency &quot;JSONKit&quot;, &quot;~&gt; 1.4&quot;    #依赖关系，该项目所依赖的其他库，如果有多个需要填写多个s.dependency</span><br></pre></td></tr></table></figure></li>
+<li><p>编辑完podspec文件后，需要验证一下这个文件是否可用，如果有任何WARNING或者ERROR都是不可以的，它就不能被添加到Spec Repo中，不过xcode的WARNING是可以存在的，验证需要执行一下命令<code>$ pod lib lint</code><br>当看到以下输出说明成功了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-&gt; MyCategory (0.1.0)</span><br><span class="line">​</span><br><span class="line">MyCategory passed validation.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>因为podspec文件中获取Git版本控制的项目还需要tag号，所以我们要打上一个tag</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">$ git add .</span><br><span class="line">$ git commit -m &apos;编辑spec文件&apos;</span><br><span class="line">#添加远端仓库 若已存在远端仓库，则跳过添加</span><br><span class="line">$ git remote add origin http://gitlab.xxx.com/xx/MyCategory.git</span><br><span class="line">#提交到远端</span><br><span class="line">$ git push origin master</span><br><span class="line">$ git tag -m &quot;first release&quot; &quot;0.1.0&quot; (MyCategory.podspec文件中的tag值保持一致)</span><br><span class="line">#推送tag到远端仓库</span><br><span class="line">$ git push --tags</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>向Spec Repo提交podspec注意</p>
+<ul>
+<li>向Spec Repo提交podspec必须确保podspec通过验证无误！！！</li>
+<li>按规范删掉无用的注释</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>提交<code>$ pod repo push MySpecs MyCategory.podspec</code></p>
+</li>
+</ul>
+<p><strong>注：该内容非本人原创，流程已经验证，若有侵权，私信立删！</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.jianshu.com/u/2740921af9d5/2019/08/08/privateRepo/" data-id="ck3nw3b350008760tdovz1znm" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-payment" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/20/payment/" class="article-date">
+  <time datetime="2019-05-20T13:14:13.000Z" itemprop="datePublished">2019-05-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/20/payment/">iOS 集成支付宝、微信、银联的App聚合支付</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="CCPaySDK"><a href="#CCPaySDK" class="headerlink" title="CCPaySDK"></a><a href="https://github.com/iblocker/CCPaySDKDemo" target="_blank" rel="noopener">CCPaySDK</a></h4><hr>
+<p><strong>1.三方库依赖</strong></p>
+<p>1.1 CocoaPods导入三方依赖库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pod &apos;AlipaySDK-iOS&apos;</span><br><span class="line">pod &apos;WechatOpenSDK&apos;</span><br><span class="line">pod &apos;MJExtension&apos;</span><br></pre></td></tr></table></figure>
+<p>1.2 手动引入银联依赖库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">UPPaymentControl.h</span><br><span class="line">libPaymentControl.a</span><br></pre></td></tr></table></figure>
+<p>1.3 Library Binary With Libraries引入依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CFNetwork.framework</span><br><span class="line">SystemConfiguration.framework</span><br><span class="line">libz.tdb</span><br></pre></td></tr></table></figure>
+
+<p><strong>2.代码示例</strong></p>
+<p>2.1 SDK回调Code类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">typedef NS_ENUM(NSUInteger, CCPayErrorCode) &#123;</span><br><span class="line">    CCPayErrorCodeSuccess                 = 0,        //  支付成功</span><br><span class="line">    CCPayErrorCodeUnknown                 = 100000,   //  未知错误</span><br><span class="line">    CCPayErrorCodeNotInstalled            = 100001,   //  程序未安装</span><br><span class="line">    CCPayErrorCodeFailed                  = 100002,   //  支付失败</span><br><span class="line">    CCPayErrorCodeCancel                  = 100003,   //  支付取消</span><br><span class="line">    CCPayErrorCodeDealing                 = 100004,   //  交易处理中</span><br><span class="line">    CCPayErrorCodeTemporarilyNotOpened    = 100099    //  功能暂未开放</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>2.2 方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">/** SDK版本号*/</span><br><span class="line">@property (nonatomic, readonly, copy) NSString *version;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> 单例方法</span><br><span class="line"> </span><br><span class="line"> @return 单例对象</span><br><span class="line"> */</span><br><span class="line">+ (instancetype)sharedSDK;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> 注册微信支付 若要支持微信支付，则必须注册</span><br><span class="line"> </span><br><span class="line"> @param appId 微信AppId</span><br><span class="line"> @return 注册结果</span><br><span class="line"> */</span><br><span class="line">- (BOOL)registerWXAppId:(NSString *)appId;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> 打开支付Url</span><br><span class="line"> </span><br><span class="line"> @param url Url</span><br><span class="line"> @return 是否打开</span><br><span class="line"> */</span><br><span class="line">- (BOOL)openPayURL:(NSURL *)url;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> 支付</span><br><span class="line"> </span><br><span class="line"> @param payChannel      支付方式</span><br><span class="line"> @param pay_params      支付参数</span><br><span class="line"> @param viewController  调起支付的视图控制器</span><br><span class="line"> @param completion      完成回调</span><br><span class="line"> */</span><br><span class="line">- (void)payWithPayChannel:(CCPayChannel)payChannel</span><br><span class="line">               pay_params:(NSString *)pay_params</span><br><span class="line">           viewController:(UIViewController *)viewController</span><br><span class="line">               completion:(void (^)(BOOL success, NSError *error))completion;</span><br></pre></td></tr></table></figure>
+
+<p>2.3.1 注册微信AppId</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//  若要支持微信支付，则必须注册微信支付</span><br><span class="line">[[CCPayManager sharedManager] registerWXAppId:@&quot;wx0000000000000000&quot;];</span><br></pre></td></tr></table></figure>
+
+<p>2.3.2 获取SDK版本号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSString *version = [CCPayManager sharedManager].version;</span><br></pre></td></tr></table></figure>
+
+<p>2.3.3 处理OpenUrl</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url &#123;</span><br><span class="line">    return [[CCPaySDK sharedSDK] openPayURL:url];</span><br><span class="line">&#125;</span><br><span class="line">- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(nullable NSString *)sourceApplication annotation:(id)annotation &#123;</span><br><span class="line">    return [[CCPaySDK sharedSDK] openPayURL:url];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary&lt;UIApplicationOpenURLOptionsKey,id&gt; *)options NS_AVAILABLE_IOS(9_0) &#123;</span><br><span class="line">    return [[CCPaySDK sharedSDK] openPayURL:url];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.3.4 支付示例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">- (IBAction)aliPayTouchUpInside:(id)sender &#123;</span><br><span class="line">    //  支付宝支付</span><br><span class="line">   [[CCPaySDK sharedSDK] payWithPayChannel:CCPayChannelALIPAY_MOBILE</span><br><span class="line">                                         pay_params:@&quot;alipay_params&quot;</span><br><span class="line">                                     viewController:self</span><br><span class="line">                                         completion:^(BOOL success, NSError * _Nonnull error) &#123;</span><br><span class="line">                                             NSLog(@&quot;%d --- %@&quot;, success, error);</span><br><span class="line">                                         &#125;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (IBAction)wechatPayTouchUpInside:(id)sender &#123;</span><br><span class="line">    //  微信支付</span><br><span class="line">    [[CCPaySDK sharedSDK] payWithPayChannel:CCPayChannelWX_APP</span><br><span class="line">                                         pay_params:@&quot;wechatpay_params&quot;</span><br><span class="line">                                     viewController:self</span><br><span class="line">                                         completion:^(BOOL success, NSError * _Nonnull error) &#123;</span><br><span class="line">                                             NSLog(@&quot;%d --- %@&quot;, success, error);</span><br><span class="line">                                         &#125;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (IBAction)unionPayTouchUpInside:(id)sender &#123;</span><br><span class="line">    //  银联支付</span><br><span class="line">    [[CCPaySDK sharedSDK] payWithPayChannel:CCPayChannelUNION_APP</span><br><span class="line">                                         pay_params:@&quot;unionpay_params&quot;</span><br><span class="line">                                     viewController:self</span><br><span class="line">                                         completion:^(BOOL success, NSError * _Nonnull error) &#123;</span><br><span class="line">                                             NSLog(@&quot;%d --- %@&quot;, success, error);</span><br><span class="line">                                         &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.jianshu.com/u/2740921af9d5/2019/05/20/payment/" data-id="ck3nw3b330006760tg3cv0kk8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-comments" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/12/comments/" class="article-date">
+  <time datetime="2019-04-12T13:16:42.000Z" itemprop="datePublished">2019-04-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/12/comments/">iOS 评价控件</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://github.com/iblocker/CCComments" target="_blank" rel="noopener">Demo下载地址</a></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2377435-fcf4d87272957b7c.gif?imageMogr2/auto-orient/strip" alt="这是一个评价控件效果图"><br>使用的三方库：<br>1、星级评价，使用了<a href="https://github.com/DQ-qi/DQStarView" target="_blank" rel="noopener">DQStarView</a><br>2、输入框，使用了<a href="https://github.com/ibireme/YYText" target="_blank" rel="noopener">YYText</a>的YYTextView</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.jianshu.com/u/2740921af9d5/2019/04/12/comments/" data-id="ck3nw3b210000760t3f83bx6r" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-passStrength" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/10/passStrength/" class="article-date">
+  <time datetime="2019-04-10T13:47:04.000Z" itemprop="datePublished">2019-04-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/10/passStrength/">iOS 检测密码强度</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://github.com/iblocker/CCPassStrength.git" target="_blank" rel="noopener">CCPassStrength</a></p>
+<p>参考Java源码<a href="https://github.com/venshine/CheckPasswordStrength" target="_blank" rel="noopener">CheckPasswordStrength</a> 如有侵权，请联系我删除</p>
+<h4 id="密码强度级别-CCStrengthLevel"><a href="#密码强度级别-CCStrengthLevel" class="headerlink" title="密码强度级别(CCStrengthLevel)"></a>密码强度级别(CCStrengthLevel)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">typedef NS_ENUM(NSUInteger, CCStrengthLevel) &#123;</span><br><span class="line">    CCStrengthLevelEASY = 0,</span><br><span class="line">    CCStrengthLevelMIDIUM,</span><br><span class="line">    CCStrengthLevelSTRONG,</span><br><span class="line">    CCStrengthLevelVERY_STRONG,</span><br><span class="line">    CCStrengthLevelEXTREMELY_STRONG</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">NSLog(@&quot;111111 --- %zd&quot;, [@&quot;111111&quot; passwordLevel]);</span><br><span class="line">NSLog(@&quot;123456 --- %zd&quot;, [@&quot;123456&quot; passwordLevel]);</span><br><span class="line">NSLog(@&quot;ababab --- %zd&quot;, [@&quot;ababab&quot; passwordLevel]);</span><br><span class="line">NSLog(@&quot;abc123 --- %zd&quot;, [@&quot;abc123&quot; passwordLevel]);</span><br><span class="line">NSLog(@&quot;123abc --- %zd&quot;, [@&quot;123abc&quot; passwordLevel]);</span><br><span class="line">NSLog(@&quot;password --- %zd&quot;, [@&quot;password&quot; passwordLevel]);</span><br><span class="line">NSLog(@&quot;Password --- %zd&quot;, [@&quot;Password&quot; passwordLevel]);</span><br><span class="line">NSLog(@&quot;Abcqsc123 --- %zd&quot;, [@&quot;Abcqsc123&quot; passwordLevel]);</span><br><span class="line">NSLog(@&quot;ADgj123 --- %zd&quot;, [@&quot;ADgj123&quot; passwordLevel]);</span><br><span class="line">NSLog(@&quot;ADgj246@ --- %zd&quot;, [@&quot;ADgj246@&quot; passwordLevel]);</span><br><span class="line">NSLog(@&quot;Asdfgh169 --- %zd&quot;, [@&quot;Asdfgh169&quot; passwordLevel]);</span><br><span class="line">NSLog(@&quot;Asdfgh010101 --- %zd&quot;, [@&quot;Asdfgh010101&quot; passwordLevel]);</span><br><span class="line">NSLog(@&quot;Asdfgh20190401 --- %zd&quot;, [@&quot;Asdfgh20190401&quot; passwordLevel]);</span><br><span class="line">NSLog(@&quot;Secret169!@# --- %zd&quot;, [@&quot;Secret169!@#&quot; passwordLevel]);</span><br><span class="line">NSLog(@&quot;Secret1369@!#￥…… --- %zd&quot;, [@&quot;Secret1369@!#￥……&quot; passwordLevel]);</span><br></pre></td></tr></table></figure>
+<p><strong>打印结果</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">2019-11-25 15:57:19.535470+0800 CCCheckPasswords[17302:105185] 111111 --- 0</span><br><span class="line">2019-11-25 15:57:19.537895+0800 CCCheckPasswords[17302:105185] 123456 --- 0</span><br><span class="line">2019-11-25 15:57:19.538161+0800 CCCheckPasswords[17302:105185] ababab --- 0</span><br><span class="line">2019-11-25 15:57:19.538404+0800 CCCheckPasswords[17302:105185] abc123 --- 0</span><br><span class="line">2019-11-25 15:57:19.538651+0800 CCCheckPasswords[17302:105185] 123abc --- 0</span><br><span class="line">2019-11-25 15:57:19.538909+0800 CCCheckPasswords[17302:105185] password --- 0</span><br><span class="line">2019-11-25 15:57:19.539164+0800 CCCheckPasswords[17302:105185] Password --- 0</span><br><span class="line">2019-11-25 15:57:19.539376+0800 CCCheckPasswords[17302:105185] Abcqsc123 --- 1</span><br><span class="line">2019-11-25 15:57:19.539618+0800 CCCheckPasswords[17302:105185] ADgj123 --- 1</span><br><span class="line">2019-11-25 15:57:19.539862+0800 CCCheckPasswords[17302:105185] ADgj246@ --- 1</span><br><span class="line">2019-11-25 15:57:19.540065+0800 CCCheckPasswords[17302:105185] Asdfgh169 --- 1</span><br><span class="line">2019-11-25 15:57:19.540313+0800 CCCheckPasswords[17302:105185] Asdfgh010101 --- 1</span><br><span class="line">2019-11-25 15:57:19.540496+0800 CCCheckPasswords[17302:105185] Asdfgh20190401 --- 2</span><br><span class="line">2019-11-25 15:57:19.540735+0800 CCCheckPasswords[17302:105185] Secret169!@# --- 3</span><br><span class="line">2019-11-25 15:57:19.541052+0800 CCCheckPasswords[17302:105185] Secret1369@!#￥…… --- 4</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.jianshu.com/u/2740921af9d5/2019/04/10/passStrength/" data-id="ck3nw3b37000a760t50bjb8lh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-openFileUserThirdApp" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/14/openFileUserThirdApp/" class="article-date">
+  <time datetime="2018-11-14T13:49:05.000Z" itemprop="datePublished">2018-11-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/14/openFileUserThirdApp/">iOS 使用第三方应用打开文件（文件预览）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://upload-images.jianshu.io/upload_images/2377435-50498b7aca5315b4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/300" alt="文件预览效果图"></p>
+<p>&emsp;&emsp;我们在及时聊天App中经常能遇到他人发送过来的pdf、doc、xls等文件，如果App不支持打开这些文件，那我们怎么去选择三方的应用去预览这些文件呢？<br>&emsp;&emsp;这里使用到的就是系统的UIDocumentInteractionController，点击“使用第三方应用打开”按钮事件如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">_documentInteractionController = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:filePath]];</span><br><span class="line">_documentInteractionController.delegate = self;</span><br><span class="line">[_documentInteractionController presentOpenInMenuFromRect:CGRectZero inView:self.view animated:YES];</span><br></pre></td></tr></table></figure>
+<p><strong>【注】本地文件路径存在中文无法打开时，使用URLEncode。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.jianshu.com/u/2740921af9d5/2018/11/14/openFileUserThirdApp/" data-id="ck3nw3b310004760t3jlrg2mx" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-cordova" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/06/cordova/" class="article-date">
+  <time datetime="2018-11-06T13:51:03.000Z" itemprop="datePublished">2018-11-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/06/cordova/">Cordova</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="1-Corodova的安装"><a href="#1-Corodova的安装" class="headerlink" title="1. Corodova的安装"></a>1. Corodova的安装</h4><p><strong>1.1 安装Node.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br></pre></td></tr></table></figure>
+<p><strong>1.2 安装Git</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br></pre></td></tr></table></figure>
+<p><strong>1.3 安装Cordova</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install -g cordova</span><br></pre></td></tr></table></figure>
+<p>查看cordova版本号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cordova -v</span><br></pre></td></tr></table></figure>
+<p>更新Cordova</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm update cordova -g</span><br></pre></td></tr></table></figure>
+<p>更新平台（如iOS）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cordova platform update ios</span><br></pre></td></tr></table></figure>
+<h4 id="2-创建Cordova工程"><a href="#2-创建Cordova工程" class="headerlink" title="2. 创建Cordova工程"></a>2. 创建Cordova工程</h4><p><strong>2.1 创建项目</strong></p>
+<p>cd到需要创建项目的路径下面，命令行创建项目</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cordova create &lt;工程文件夹名称&gt; &lt;标识符&gt; &lt;项目名称&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>2.2 添加平台</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cordova platform add ios</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cordova platform add android</span><br></pre></td></tr></table></figure>
+<p>查看已添加的平台</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cordova platform ls</span><br></pre></td></tr></table></figure>
+<p><strong>2.3 编译</strong><br>编译所有平台</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cordova build</span><br></pre></td></tr></table></figure>
+<p>编译对应平台</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cordova build ios</span><br></pre></td></tr></table></figure>
+<p><strong>2.4 工程路径</strong><br><img src="https://upload-images.jianshu.io/upload_images/2377435-91e91a2fa878af4c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="原创截图.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.jianshu.com/u/2740921af9d5/2018/11/06/cordova/" data-id="ck3nw3b2b0002760t2xc5e0un" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-encryptedRongCloudMessage" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/27/encryptedRongCloudMessage/" class="article-date">
+  <time datetime="2018-04-27T13:53:03.000Z" itemprop="datePublished">2018-04-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/27/encryptedRongCloudMessage/">iOS 关于融云及时聊天的消息加解密</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://upload-images.jianshu.io/upload_images/2377435-607584e855f60593.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/500" alt="RongCloud.png"></p>
+<p>&emsp;&emsp;好久没更新技术文章了，正好最近做了点东西，拿出来分享一下。<br>&emsp;&emsp;鉴于行业数据的保密性，公司要求在集成了融云及时聊天的App中对消息做加、解密处理，保证在消息转发过程中，消息是以密文传输的。关于如何加、解密以及密钥的传输、存放我就不说了，自己百度去，下面来谈谈怎么对RCTextMessage做加解密。<br>&emsp;&emsp;由于官方的SDK只对开发者暴露了头文件，对里面的实现方式我们并不能知道，怀着研究的心态，我给它反编译（class-dump）了，多少能看到点东西<del>~</del>😝😝😝</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;RCMessageContent.h&quot;</span><br><span class="line">#import &quot;NSCoding.h&quot;</span><br><span class="line"></span><br><span class="line">@class NSString;</span><br><span class="line"></span><br><span class="line">@interface RCTextMessage : RCMessageContent &lt;NSCoding&gt;</span><br><span class="line">&#123;</span><br><span class="line">    NSString *_content;</span><br><span class="line">    NSString *_extra;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">+ (id)getObjectName;</span><br><span class="line">+ (unsigned long long)persistentFlag;</span><br><span class="line">+ (id)messageWithContent:(id)arg1;</span><br><span class="line">@property(retain, nonatomic) NSString *extra; // @synthesize extra=_extra;</span><br><span class="line">@property(retain, nonatomic) NSString *content; // @synthesize content=_content;</span><br><span class="line">- (void).cxx_destruct;</span><br><span class="line">- (id)conversationDigest;</span><br><span class="line">- (id)getSearchableWords;</span><br><span class="line">- (void)decodeWithData:(id)arg1;</span><br><span class="line">- (id)encode;</span><br><span class="line">- (void)encodeWithCoder:(id)arg1;</span><br><span class="line">- (id)initWithCoder:(id)arg1;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;看到了吗，我们要的东西出来了，”encodeWithCoder:”、 “encode”、 “decodeWithData:”。自然而然，思路也就顺了——在它编码、解码的时候，做加、解密。<br>&emsp;&emsp;怎么做呢？原本我是想用继承的，后来考虑到代码侵入性太大，不如使用Category给它重写了，不要谢我，就是这么刚，这么邪恶~~ 😝😝😝言简意赅，能用代码解决的就不逼逼，自己看代码去吧。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;RCTextMessage+Custom.h&quot;</span><br><span class="line"></span><br><span class="line">@implementation RCTextMessage (Custom)</span><br><span class="line"></span><br><span class="line">#pragma clang diagnostic push</span><br><span class="line">#pragma clang diagnostic ignored &quot;-Wobjc-protocol-method-implementation&quot;</span><br><span class="line">/// NSCoding</span><br><span class="line">- (instancetype)initWithCoder:(NSCoder *)aDecoder &#123;</span><br><span class="line">    self = [super init];</span><br><span class="line">    if (self) &#123;</span><br><span class="line">        self.content = [aDecoder decodeObjectForKey:@&quot;content&quot;];</span><br><span class="line">        self.extra = [aDecoder decodeObjectForKey:@&quot;extra&quot;];</span><br><span class="line">    &#125;</span><br><span class="line">    return self;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/// NSCoding</span><br><span class="line">- (void)encodeWithCoder:(NSCoder *)aCoder &#123;</span><br><span class="line">    [aCoder encodeObject:self.content.ib_encrypt forKey:@&quot;content&quot;];</span><br><span class="line">    [aCoder encodeObject:self.extra forKey:@&quot;extra&quot;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">///将消息内容编码成json</span><br><span class="line">- (NSData *)encode &#123;</span><br><span class="line">    NSMutableDictionary *dataDict = [NSMutableDictionary dictionary];</span><br><span class="line">    [dataDict setObject:self.content.ib_encrypt forKey:@&quot;content&quot;];</span><br><span class="line">    if (self.extra) &#123;</span><br><span class="line">        [dataDict setObject:self.extra forKey:@&quot;extra&quot;];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    if (self.senderUserInfo) &#123;</span><br><span class="line">        NSMutableDictionary *userInfoDic = [[NSMutableDictionary alloc] init];</span><br><span class="line">        if (self.senderUserInfo.name) &#123;</span><br><span class="line">            [userInfoDic setObject:self.senderUserInfo.name forKeyedSubscript:@&quot;name&quot;];</span><br><span class="line">        &#125;</span><br><span class="line">        if (self.senderUserInfo.portraitUri) &#123;</span><br><span class="line">            [userInfoDic setObject:self.senderUserInfo.portraitUri forKeyedSubscript:@&quot;portrait&quot;];</span><br><span class="line">        &#125;</span><br><span class="line">        if (self.senderUserInfo.userId) &#123;</span><br><span class="line">            [userInfoDic setObject:self.senderUserInfo.userId forKeyedSubscript:@&quot;id&quot;];</span><br><span class="line">        &#125;</span><br><span class="line">        [dataDict setObject:userInfoDic forKey:@&quot;user&quot;];</span><br><span class="line">    &#125;</span><br><span class="line">    NSData *data = [NSJSONSerialization dataWithJSONObject:dataDict options:kNilOptions error:nil];</span><br><span class="line">    return data;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">///将json解码生成消息内容</span><br><span class="line">- (void)decodeWithData:(NSData *)data &#123;</span><br><span class="line">    if (data) &#123;</span><br><span class="line">        __autoreleasing NSError *error = nil;</span><br><span class="line">        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&amp;error];</span><br><span class="line">        if (dictionary) &#123;</span><br><span class="line">            self.extra = dictionary[@&quot;extra&quot;];</span><br><span class="line">            NSString *originContent = dictionary[@&quot;content&quot;];</span><br><span class="line">            self.content = originContent.ib_decrypt;</span><br><span class="line">            </span><br><span class="line">            NSDictionary *userinfoDic = dictionary[@&quot;user&quot;];</span><br><span class="line">            [self decodeUserInfo:userinfoDic];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">#pragma clang diagnostic pop</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;”ib_encrypt”、”ib_decrypt”为加、解密方法。其他类型的Message也可以这样做，当然，这里我只对content做了加、解密，如果对data直接做加、解密也是可以的。<br>&emsp;&emsp;欢迎前辈给予指点，谢谢！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.jianshu.com/u/2740921af9d5/2018/04/27/encryptedRongCloudMessage/" data-id="ck3nw3b2d0003760t6hqlcpkr" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-remoteSpeech" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/04/remoteSpeech/" class="article-date">
+  <time datetime="2017-12-04T13:55:05.000Z" itemprop="datePublished">2017-12-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/04/remoteSpeech/">iOS 收款推送消息语音播报</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&emsp;&emsp;近期产品大大突然提出一个蛋疼的需求，并表示这是<strong>“客户和市场强制要求”</strong>做的。。。没办法，只能硬着头皮上了。<br>&emsp;&emsp;之前采用的是静默推送+普通推送，而且网上大部分资料也默认使用的是静默推送方式。据我所知，该方案有一定的缺陷：<strong>1、部分机器收不到语音播报；2、若需要在后台或锁屏状态下播报语音时，上架会遇到”Audio,AirPlay,and Picture in Picture”和”Background fetch”等问题审核被拒。</strong>通过查阅网上的资料，我改用iOS 10新的API推送扩展（UNNotificationServiceExtension），三方SDK使用极光，关于集成方式就不多说了，详见<a href="https://docs.jiguang.cn/jpush/client/iOS/ios_guide_new/" target="_blank" rel="noopener">极光官方文档</a>。<br>&emsp;&emsp;这种方案的特点是：节省大量代码，上架简单，服务器只需要推一条消息，但iOS 10以上”mutable-content = 1”必传，否则程序不走这个扩展的Target。</p>
+<h4 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h4><ul>
+<li><p><strong>iOS 10以上采用<a href="http://www.jianshu.com/p/78ef7bc04655#UNNotificationServiceExtension-%E9%80%9A%E7%9F%A5%E6%9C%8D%E5%8A%A1%E6%89%A9%E5%B1%95">推送扩展</a>（极光必传mutable-content，iOS 10以下不需要）处理，使用iOS原生API AVSpeechSynthesizer实现文字合成语音。</strong><br><img src="http://upload-images.jianshu.io/upload_images/2377435-cb8213f67dc44847.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/500" alt="WX20171205-105718@2x.png"><br><img src="http://upload-images.jianshu.io/upload_images/2377435-bee8977f80332165.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/500" alt="屏幕快照 2017-12-04 09.53.17.jpg"></p>
+</li>
+<li><p><strong>iOS10以下采用固定音频文件播放，比如“你有一笔收款”。</strong></p>
+<h4 id="相关代码"><a href="#相关代码" class="headerlink" title="相关代码"></a>相关代码</h4></li>
+<li><p><strong>iOS 10以下：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler &#123;</span><br><span class="line">    </span><br><span class="line">    [JPUSHService handleRemoteNotification:userInfo];</span><br><span class="line">    completionHandler(UIBackgroundFetchResultNewData);</span><br><span class="line">    </span><br><span class="line">    //  iOS 10之前前台没有通知栏</span><br><span class="line">    if ([UIDevice currentDevice].systemVersion.floatValue &lt; 10.0 &amp;&amp; [UIApplication sharedApplication].applicationState == UIApplicationStateActive) &#123;</span><br><span class="line">       //  iOS 10以下 极光前台不展示消息栏，此处为自定义内容</span><br><span class="line">       [EBBannerView showWithContent:@&quot;交易结果通知&quot;];</span><br><span class="line">            </span><br><span class="line">       //  获取共享域的偏好设置（可百度“多target数据共享”）</span><br><span class="line">       NSUserDefaults *userDefault = [[NSUserDefaults alloc] initWithSuiteName:@&quot;group.xxx&quot;];</span><br><span class="line">       BOOL canSound = [userDefault boolForKey:@&quot;voice&quot;];</span><br><span class="line">       if (canSound) &#123;</span><br><span class="line">           //  播放refund.wav或collection.wav固定音频文件</span><br><span class="line">           if ([refund condition]) &#123;</span><br><span class="line">               [self playMusic:@&quot;refund&quot; type:@&quot;wav&quot;];</span><br><span class="line">           &#125; else &#123;</span><br><span class="line">               [self playMusic:@&quot;collection&quot; type:@&quot;wav&quot;];</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//  播放音频文件</span><br><span class="line">- (void)playMusic:(NSString *)name type:(NSString *)type &#123;</span><br><span class="line">    //得到音效文件的地址</span><br><span class="line">    NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:name ofType:type];</span><br><span class="line">    //将地址字符串转换成url</span><br><span class="line">    NSURL *soundURL = [NSURL fileURLWithPath:soundFilePath];</span><br><span class="line">    //生成系统音效id</span><br><span class="line">    AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundURL, &amp;_soundFileObject);</span><br><span class="line">    //播放系统音效</span><br><span class="line">    AudioServicesPlaySystemSound(_soundFileObject);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>iOS 10及以上：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">- (void)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler &#123;</span><br><span class="line">    self.contentHandler = contentHandler;</span><br><span class="line">    self.bestAttemptContent = [request.content mutableCopy];</span><br><span class="line">    //  iOS 10在有语音播报的情况下 可屏蔽系统提示音，也可根据需求来</span><br><span class="line">    self.bestAttemptContent.sound = nil;</span><br><span class="line">    </span><br><span class="line">    // Modify the notification content here...    </span><br><span class="line">    //  获取共享域的偏好设置</span><br><span class="line">    NSUserDefaults *userDefault = [[NSUserDefaults alloc] initWithSuiteName:@&quot;group. xxx&quot;];</span><br><span class="line">    </span><br><span class="line">    //  解析推送自定义参数userInfo</span><br><span class="line">    NSDictionary *userInfo = [self dictionaryWithUserInfo:self.bestAttemptContent.userInfo];</span><br><span class="line">    </span><br><span class="line">    BOOL canSound = [userDefault boolForKey:@&quot;voice&quot;];</span><br><span class="line">    NSString *voiceString = nil;</span><br><span class="line">    if (canSound) &#123;</span><br><span class="line">        if ([refund condition]) &#123;</span><br><span class="line">            voiceString = [NSString stringWithFormat:@&quot;退款%@元！&quot;, userInfo[@&quot;money&quot;]];</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            voiceString = [NSString stringWithFormat:@&quot;收款%@元！&quot;, userInfo[@&quot;money&quot;]];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    //  语音合成</span><br><span class="line">    [self syntheticVoice:voiceString];    </span><br><span class="line">    self.contentHandler(self.bestAttemptContent);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">- (void)syntheticVoice:(NSString *)string &#123;</span><br><span class="line">    </span><br><span class="line">    //  语音合成</span><br><span class="line">    self.synthesizer = [[AVSpeechSynthesizer alloc] init];</span><br><span class="line">    AVSpeechUtterance *speechUtterance = [AVSpeechUtterance speechUtteranceWithString:string];</span><br><span class="line">    //设置语言类别（不能被识别，返回值为nil）</span><br><span class="line">    speechUtterance.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@&quot;zh-CN&quot;];</span><br><span class="line">    //设置语速快慢</span><br><span class="line">    speechUtterance.rate = 0.55;</span><br><span class="line">    //语音合成器会生成音频 </span><br><span class="line">    [self.synthesizer speakUtterance:speechUtterance];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.jianshu.com/u/2740921af9d5/2017/12/04/remoteSpeech/" data-id="ck3nw3b360009760t5nq430oz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-gradientWaveView" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/22/gradientWaveView/" class="article-date">
+  <time datetime="2017-08-22T13:56:28.000Z" itemprop="datePublished">2017-08-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/22/gradientWaveView/">iOS 带有渐变色波纹动画</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&emsp;&emsp;<a href="https://github.com/iblocker/IBWaterWaveView" target="_blank" rel="noopener">Github</a><br>&emsp;&emsp;<a href="http://code.cocoachina.com/view/135932" target="_blank" rel="noopener">CocoaChina</a></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2377435-82089002e4ac6371.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/200" alt=""></p>
+<h4 id="实现过程："><a href="#实现过程：" class="headerlink" title="实现过程："></a>实现过程：</h4><p><strong>1、波纹动画主要依赖于CAShapeLayer的绘制，使用帧动画实现；需要使用多个CAShapeLayer通过y值变换组成（这里我只是用了2个CAShapeLayer）。</strong><br><strong>2、渐变色由CAGradientLayer完成。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">- (void)changeFirstWaveLayerPath &#123;</span><br><span class="line">    CGMutablePathRef path = CGPathCreateMutable();</span><br><span class="line">    CGFloat y = _wavePointY;</span><br><span class="line">    </span><br><span class="line">    CGPathMoveToPoint(path, nil, 0, y);</span><br><span class="line">    for (float x = 0.0f; x &lt;= _waveWidth; x ++) &#123;</span><br><span class="line">        y = _waveAmplitude * 1.6 * sin((250 / _waveWidth) * (x * M_PI / 180) - _waveOffsetX * M_PI / 270) + _wavePointY;</span><br><span class="line">        CGPathAddLineToPoint(path, nil, x, y);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    CGPathAddLineToPoint(path, nil, _waveWidth, 0);</span><br><span class="line">    CGPathAddLineToPoint(path, nil, 0, 0);</span><br><span class="line">    CGPathCloseSubpath(path);</span><br><span class="line">    </span><br><span class="line">    _shapeLayer1.path = path;</span><br><span class="line">    CGPathRelease(path);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)changeSecondWaveLayerPath &#123;</span><br><span class="line">    CGMutablePathRef path = CGPathCreateMutable();</span><br><span class="line">    CGFloat y = _wavePointY;</span><br><span class="line">    CGPathMoveToPoint(path, nil, 0, y);</span><br><span class="line">    for (float x = 0.0f; x &lt;= _waveWidth; x ++) &#123;</span><br><span class="line">        </span><br><span class="line">        y = _waveAmplitude * 1.6 * sin((250 / _waveWidth) * (x * M_PI / 180) - _waveOffsetX * M_PI / 180) + _wavePointY;</span><br><span class="line">        CGPathAddLineToPoint(path, nil, x, y);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    CGPathAddLineToPoint(path, nil, _waveWidth, 0);</span><br><span class="line">    CGPathAddLineToPoint(path, nil, 0, 0);</span><br><span class="line">    CGPathCloseSubpath(path);</span><br><span class="line">    </span><br><span class="line">    _shapeLayer2.path = path;</span><br><span class="line">    </span><br><span class="line">    CGPathRelease(path);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;调用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">_waveOffsetX += _waveSpeed;</span><br><span class="line">[self changeFirstWaveLayerPath];</span><br><span class="line">[self changeSecondWaveLayerPath];</span><br><span class="line">   </span><br><span class="line">[self.layer addSublayer:self.gradientLayer1];</span><br><span class="line">self.gradientLayer1.mask = _shapeLayer1;</span><br><span class="line">   </span><br><span class="line">[self.layer addSublayer:self.gradientLayer2];</span><br><span class="line">self.gradientLayer2.mask = _shapeLayer2;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;如果需要纯色背景的话 可以删除CAGradientLayer，给View和CAShapeLayer设置背景色；或者2个Color颜色值给相同的。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.jianshu.com/u/2740921af9d5/2017/08/22/gradientWaveView/" data-id="ck3nw3b320005760t44j8fe1s" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/11/07/command/">iOS 常用Mac终端命令</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/08/privateRepo/">基于GitLab创建CocoaPods私有库</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/20/payment/">iOS 集成支付宝、微信、银联的App聚合支付</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/12/comments/">iOS 评价控件</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/10/passStrength/">iOS 检测密码强度</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 iBlocker<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
